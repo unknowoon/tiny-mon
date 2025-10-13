@@ -1,0 +1,35 @@
+# 빌드 디렉토리
+build/
+cmake-build-*/
+
+# 빌드 결과물
+bin/commManager
+bin/comm
+bin/*.a
+bin/*.so
+bin/*.dylib
+
+# 로그 파일
+*.log
+
+# CMake 관련
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+install_manifest.txt
+
+# IDE 관련
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# 디버그 파일
+*.dSYM/
+*.o
+*.out

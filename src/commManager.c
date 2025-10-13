@@ -4,7 +4,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include "../inc/comm.h"
+#include "comm.h"
 
 #define PORT 8080
 #define BACKLOG 5
