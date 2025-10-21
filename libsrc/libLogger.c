@@ -1,8 +1,9 @@
-#include "logger.h"
 #include <string.h>
 #include <stdlib.h>
 #include <pthread.h>
 #include <locale.h>
+
+#include "libLogger.h"
 
 // C99 지정 초기화자 (Designated Initializers)
 Logger g_logger = {

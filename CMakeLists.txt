@@ -17,8 +17,8 @@ set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3")
 
 # 출력 디렉토리 설정
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/libsrc)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/libsrc)
 
 # pthread 라이브러리 찾기
 find_package(Threads REQUIRED)
@@ -26,11 +26,11 @@ find_package(Threads REQUIRED)
 # Logger 라이브러리 빌드
 add_library(logger STATIC
     libsrc/libLogger.c
-    libsrc/inc/logger.h
+    libsrc/libLogger.h
 )
 
 target_include_directories(logger PUBLIC
-    ${CMAKE_SOURCE_DIR}/libsrc/inc
+    ${CMAKE_SOURCE_DIR}/libsrc
 )
 
 target_link_libraries(logger PRIVATE
@@ -44,7 +44,7 @@ add_executable(commManager
 )
 
 target_include_directories(commManager PRIVATE
-    ${CMAKE_SOURCE_DIR}/libsrc/inc
+    ${CMAKE_SOURCE_DIR}/libsrc
     ${CMAKE_SOURCE_DIR}/src
 )
 
@@ -60,7 +60,7 @@ add_executable(comm
 )
 
 target_include_directories(comm PRIVATE
-    ${CMAKE_SOURCE_DIR}/libsrc/inc
+    ${CMAKE_SOURCE_DIR}/libsrc
     ${CMAKE_SOURCE_DIR}/src
 )
 
@@ -72,8 +72,8 @@ target_link_libraries(comm PRIVATE
 # 설치 규칙
 install(TARGETS commManager comm logger
     RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION libsrc
+    ARCHIVE DESTINATION libsrc
 )
 
 # 빌드 정보 출력

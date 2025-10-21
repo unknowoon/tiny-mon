@@ -10,7 +10,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#include "logger.h"
+
+#include "libLogger.h"
 
 #define BUFFER_SIZE 1024
 #define MAX_CLIENTS 10
