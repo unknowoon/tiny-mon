@@ -37,6 +37,16 @@ target_link_libraries(logger PRIVATE
     Threads::Threads
 )
 
+# Socket Server 라이브러리 빌드
+add_library(socket_server STATIC
+    src/socket_server.c
+    src/socket_server.h
+)
+
+target_include_directories(socket_server PUBLIC
+    ${CMAKE_SOURCE_DIR}/src
+)
+
 # CommManager 실행 파일 빌드
 add_executable(commManager
     src/commManager.c
@@ -70,7 +80,7 @@ target_link_libraries(comm PRIVATE
 )
 
 # 설치 규칙
-install(TARGETS commManager comm logger
+install(TARGETS commManager comm logger socket_server
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION libsrc
     ARCHIVE DESTINATION libsrc

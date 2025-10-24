@@ -1,13 +1,51 @@
 # 빌드 디렉토리
 build/
 cmake-build-*/
+out/
 
-# 빌드 결과물
+# 빌드 결과물 - 실행 파일
 bin/commManager
 bin/comm
-bin/*.a
-bin/*.so
-bin/*.dylib
+
+# 빌드 결과물 - 라이브러리
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.lib
+
+# 오브젝트 파일
+*.o
+*.obj
+*.lo
+
+# 컴파일러 생성 파일
+*.d
+*.dep
+*.depend
+
+# 실행 파일
+*.exe
+*.out
+*.app
+
+# 디버그 심볼
+*.dSYM/
+*.pdb
+*.ilk
+
+# 테스트 커버리지
+*.gcda
+*.gcno
+*.gcov
+coverage/
+*.lcov
+
+# Core dumps
+core
+core.*
+vgcore.*
 
 # 로그 파일
 *.log
@@ -18,11 +56,13 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 install_manifest.txt
+CTestTestfile.cmake
+Testing/
 
-# IDE 관련
+# IDE 관련 - VSCode
 .vscode/
 
-# CLion - 개인 작업 공간만 제외 (프로젝트 설정은 공유)
+# IDE 관련 - CLion (개인 작업 공간만 제외, 프로젝트 설정은 공유)
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/usage.statistics.xml
@@ -43,11 +83,23 @@ install_manifest.txt
 *.swp
 *.swo
 *~
+.*.sw?
+
+# Emacs
+*~
+\#*\#
+.\#*
 
 # macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
 
-# 디버그 파일
-*.dSYM/
-*.o
-*.out
+# Linux
+.directory
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
