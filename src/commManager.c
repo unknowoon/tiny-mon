@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include "comm.h"
-
-#define PORT 8080
-#define BACKLOG 5
+#include "commManager.h"
 
 int create_server_socket(int port) {
     int server_fd;
@@ -83,10 +74,11 @@ void handle_client_connection(int server_fd) {
     }
 }
 
+#if 0
 int main(int argc, char *argv[]) {
     int server_fd;
     int port = PORT;
-    
+
     logger_init("commmanager.log", LOG_INFO);
     log_info("CommManager: Starting up...");
 
@@ -111,3 +103,4 @@ int main(int argc, char *argv[]) {
     logger_close();
     return 0;
 }
+#endif

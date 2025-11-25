@@ -1,4 +1,6 @@
 #include "comm.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 int comm_init(int socket_fd) {
     if (socket_fd < 0) {
@@ -56,6 +58,7 @@ void comm_cleanup(int socket_fd) {
     close(socket_fd);
 }
 
+#if 0
 int main(int argc, char *argv[]) {
     char log_filename[256];
     int socket_fd;
@@ -91,3 +94,4 @@ int main(int argc, char *argv[]) {
     logger_close();
     return 0;
 }
+#endif
