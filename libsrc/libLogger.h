@@ -5,6 +5,10 @@
 #include <time.h>
 #include <stdarg.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define MAX_FILENAME_LEN 256
 
 // 로그 레벨 정의
@@ -44,5 +48,9 @@ void log_write(LogLevel level, const char *file, const char *function, int line,
 #define log_warning(...) log_write(LOG_WARNING, __FILE__, __func__, __LINE__, __VA_ARGS__)
 #define log_error(...) log_write(LOG_ERROR, __FILE__, __func__, __LINE__, __VA_ARGS__)
 #define log_fatal(...) log_write(LOG_FATAL, __FILE__, __func__, __LINE__, __VA_ARGS__)
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* LOGGER_H */

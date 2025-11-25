@@ -198,8 +198,7 @@ socket_server_t* socket_server_create(
 		const char *ip,
 		int port,
 		server_callbacks_t *callbacks,
-		void *user_data)
-{
+		void *user_data) {
 	if (!callbacks) {
 		fprintf(stderr, "Callbacks are required\n");
 		return NULL;
@@ -235,146 +234,7 @@ socket_server_t* socket_server_create(
 			return NULL;
 		}
 	}
-
-	// 바인드
-	if (bind(server->listen_fd, (struct sockaddr*)&server->addr, sizeof(server->addr)) == -1) {
-		perror("bind");
-		close(server->listen_fd);
-		free(server);
-		return NULL;
-	}
-
-	// 리슨
-	if (listen(server->listen_fd, SOMAXCONN) == -1) {
-		perror("listen");
-		close(server->listen_fd);
-		free(server);
-		return NULL;
-	}
-
-	// 논블로킹 설정
-	set_nonblocking(server->listen_fd);
-
-	// epoll 생성
-	server->epoll_fd = epoll_create1(0);
-	if (server->epoll_fd == -1) {
-		perror("epoll_create1");
-		close(server->listen_fd);
-		free(server);
-		return NULL;
-	}
-
-	// listen_fd를 epoll에 등록
-	struct epoll_event ev;
-	ev.events = EPOLLIN | EPOLLET;
-	ev.data.fd = server->listen_fd;
-
-	if (epoll_ctl(server->epoll_fd, EPOLL_CTL_ADD, server->listen_fd, &ev) == -1) {
-		perror("epoll_ctl: listen_fd");
-		close(server->epoll_fd);
-		close(server->listen_fd);
-		free(server);
-		return NULL;
-	}
-
-	// 콜백 및 사용자 데이터 설정
-	server->callbacks = *callbacks;
-	server->user_data = user_data;
-	server->running = 0;
-	server->clients = NULL;
-	server->client_count = 0;
-
-	printf("Server created on %s:%d\n", ip, port);
-	return server;
 }
 
-int socket_server_start(socket_srver_t * server) {
-	if (!server) return -1;
 
-	server->running = 1;
-	struct epoll_event events[MAX_EVENTS];
-
-	// on_start 콜백 호출
-	if (server->callbacks.on_start) {
-		server->callbacks.on_start(server->user_data);
-	}
-
-	printf("Server started, waiting for events...\n");
-
-	// 이벤트 루프
-	while (server->running) {
-		int nfds = epoll_wait(server->epoll_fd, events, MAX_EVENTS, 1000);
-		
-		if (nfds == -1) {
-			if (errno == EINTR) continue;
-			perror("epoll_wait");
-			break;
-		}
-
-		for (int i = 0; i < nfds; i++) {
-			if (events[i].data.fd == server->listen_fd) {
-				// 새로운 연결
-				handle_accept(server);
-			} else {
-				// 클라이언트 데이터
-				handle_client(server, events[i].data.fd);
-			}
-		}
-	}
-
-	// on_stop 콜백 호출 
-	if (server->callbacks.on_stop) {
-		server->callbacks.on_stop(server->user_data);
-	}
-
-	return 0;
-}
-
-void socket_server_stop(socket_server_t *server) {
-	if (server) {
-		server->running = 0;
-	}
-}
-
-void socket_server_destroy(socket_server_t *server) {
-	if (!server) return;
-
-	server->running = 0;
-
-	// 모든 클라이언트 정리
-	client_node_t *node = server->clients;
-	while (node) {
-		client_node_t *node = server->clients;
-		close(node->info.fd);
-		free(node);
-		node = next;
-	}
-
-	if (server->epoll_fd != -1) {
-		close(server->epoll_fd);
-	}
-	if (server->listen_fd != -1) {
-		close(server->listen_fd);
-	}
-
-	free(server);
-	printf("Server destroyed\n");
-}
-
-int socket_server_send(client_info_t *client, const char *data, size_t len) {
-	if (!client || client->fd < 0) {
-		return -1;
-	}
-
-	ssize_t sent = send(client->fd, data, len, MSG_NOSIGNAL);
-	return (sent == (ssize_t)len) ? 0 : -1;
-}
-
-void socket_server_disconnect(client_info_t *client) {
-	if (!client) return;
-
-	// 서버 구조체 외부에서 접근 불가
-	// epoll_ctl, close는 on_disconnected 에서 처리됨
-	shutdown(client->fd, SHUT_RDWR);
-}
 
