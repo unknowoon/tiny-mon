@@ -29,7 +29,7 @@ add_library(logger STATIC
 )
 
 target_include_directories(logger PUBLIC
-    ${CMAKE_SOURCE_DIR}/libsrc
+    ${CMAKE_SOURCE_DIR}/lib
 )
 
 target_link_libraries(logger PRIVATE
