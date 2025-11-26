@@ -65,6 +65,7 @@ Testing/
 # IDE 관련 - CLion (개인 작업 공간만 제외, 프로젝트 설정은 공유)
 .idea/workspace.xml
 .idea/tasks.xml
+.idea/editor.xml
 .idea/usage.statistics.xml
 .idea/dictionaries/
 .idea/shelf/
