@@ -2,17 +2,10 @@
 #define SOCKET_SERVER_H
 
 #include <stddef.h>
-#include <netinet/in.h>
+#include "client_manager.h"
 
 // 불투명 포인터
-typedef struct socket_server_t socket_server_t
-
-// 클라이언트 정보
-typedef struct {
-	int fd;
-	struct socketaddr_in addr;
-	void *user_data;
-} client_info_t;
+typedef struct socket_server_t socket_server_t;
 
 // 5가지 이벤트 콜백
 typedef void (*on_start_fn)(void *user_data);
@@ -41,7 +34,7 @@ socket_server_t* socket_server_create(
 );
 
 // 서버 시작 (블로킹)
-int socket_server_stawrt(socket_server_t *server);
+int socket_server_start(socket_server_t *server);
 
 // 서버 중지
 void socket_server_stop(socket_server_t *server);
@@ -56,4 +49,3 @@ int socket_server_send(client_info_t *client, const char *data, size_t len);
 void socket_server_disconnect(client_info_t *client);
 
 #endif
-	
