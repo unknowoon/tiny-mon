@@ -68,10 +68,8 @@ target_include_directories(example_echo PRIVATE src)
 
 target_link_libraries(example_echo PRIVATE socket_server)
 
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/unittest")
-
 # 설치 규칙
-install(TARGETS tiny_mon logger socket_server
+install(TARGETS tiny_mon logger
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
