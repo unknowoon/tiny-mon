@@ -6,24 +6,26 @@ TCP 서버 기반의 모니터링 시스템
 
 ```
 tiny-mon/
-├── CMakeLists.txt      # CMake 빌드 설정
-├── build.sh            # 빌드 스크립트
-├── clean.sh            # 클린 스크립트
-├── bin/                # 빌드된 실행 파일
-├── libsrc/             # 라이브러리 소스
-│   ├── inc/
-│   │   └── logger.h    # 로거 헤더
-│   └── libLogger.c     # 로거 구현
-└── src/                # 애플리케이션 소스
-    ├── comm.h          # 통신 헤더
-    ├── comm.c          # 클라이언트 핸들러
-    └── commManager.c   # 메인 서버
+├── CMakeLists.txt       # CMake 빌드 설정
+├── Dockerfile           # Docker 빌드 설정
+├── shl/                 # 셸 스크립트
+│   ├── build.sh         # 빌드 스크립트
+│   └── clean.sh         # 클린 스크립트
+├── bin/                 # 빌드된 실행 파일
+├── libsrc/              # 라이브러리 소스
+│   ├── libLogger.h      # 로거 헤더
+│   └── libLogger.c      # 로거 구현
+└── src/                 # 애플리케이션 소스
+    ├── main.cpp         # 메인 엔트리
+    ├── comm.h/c         # 통신 모듈
+    ├── commManager.h/c  # 연결 관리
+    └── mdb.hpp          # 메모리 DB
 ```
 
 ## 요구사항
 
 - CMake 3.10 이상
-- C99 지원 컴파일러 (gcc, clang 등)
+- C++17 지원 컴파일러 (gcc, clang 등)
 - pthread 라이브러리
 
 ### macOS 설치
@@ -51,10 +53,10 @@ sudo yum install cmake gcc make
 
 ```bash
 # Debug 빌드 (기본값)
-./build.sh
+./shl/build.sh
 
 # Release 빌드
-./build.sh Release
+./shl/build.sh Release
 ```
 
 ### 수동 빌드
@@ -77,11 +79,8 @@ make -j$(nproc)
 ### 서버 시작
 
 ```bash
-# 기본 포트(8080) 사용
-./bin/commManager
-
-# 사용자 지정 포트 사용
-./bin/commManager 9090
+# 서버 실행 (포트 9999)
+./bin/tiny_mon
 ```
 
 ### 클라이언트 연결 테스트
@@ -90,23 +89,53 @@ make -j$(nproc)
 
 ```bash
 # telnet으로 연결
-telnet localhost 8080
+telnet localhost 9999
 
 # 또는 netcat 사용
-nc localhost 8080
+nc localhost 9999
 ```
 
 메시지를 입력하면 서버가 에코 응답을 보냅니다.
 `quit`를 입력하면 연결이 종료됩니다.
 
+## Docker 실행
+
+### 이미지 빌드
+
+```bash
+docker build -t tiny-mon:latest .
+```
+
+### 컨테이너 실행
+
+```bash
+# 백그라운드 실행
+docker run -d -p 9999:9999 --name tiny-mon tiny-mon:latest
+
+# 포그라운드 실행 (로그 바로 확인)
+docker run -p 9999:9999 --name tiny-mon tiny-mon:latest
+```
+
+### 로그 확인
+
+```bash
+docker logs -f tiny-mon
+```
+
+### 컨테이너 중지/삭제
+
+```bash
+docker stop tiny-mon && docker rm tiny-mon
+```
+
 ## 클린
 
 ```bash
 # 빌드 파일만 삭제
-./clean.sh
+./shl/clean.sh
 
 # 빌드 파일 + 로그 파일 삭제
-./clean.sh --full
+./shl/clean.sh --full
 ```
 
 ## 주요 기능
@@ -119,18 +148,11 @@ nc localhost 8080
 - Thread-safe (pthread mutex 사용)
 - 로그 레벨별 필터링
 
-### CommManager (서버)
+### TCP 서버
 
-- TCP 소켓 서버
-- 멀티 프로세스 아키텍처 (fork 기반)
-- 클라이언트당 별도 프로세스 생성
-- 로그 파일: `commmanager.log`
-
-### Comm (클라이언트 핸들러)
-
-- 클라이언트 연결 처리
-- 에코 서버 기능
-- 프로세스별 로그 파일: `comm_<pid>.log`
+- epoll 기반 이벤트 처리
+- 클라이언트 연결 관리
+- 로그 파일: `tiny_mon.log`
 
 ## CMake 옵션
 
@@ -157,12 +179,11 @@ cmake -DCMAKE_C_COMPILER=clang ..
 ## 로그 파일
 
 실행 중 생성되는 로그 파일:
-- `commmanager.log` - 서버 메인 프로세스 로그
-- `comm_<pid>.log` - 각 클라이언트 핸들러 프로세스 로그
+- `tiny_mon.log` - 서버 로그
 
 ## 개발 정보
 
-- C 표준: C99
+- C++ 표준: C++17
 - 빌드 시스템: CMake 3.10+
 - 의존성: pthread
 
@@ -179,8 +200,8 @@ cmake --version
 
 1. 빌드 디렉토리를 삭제하고 다시 시도:
    ```bash
-   ./clean.sh
-   ./build.sh
+   ./shl/clean.sh
+   ./shl/build.sh
    ```
 
 2. 컴파일러가 설치되어 있는지 확인:
@@ -192,9 +213,9 @@ cmake --version
 
 ### 포트가 이미 사용 중
 
-다른 포트 번호를 지정:
+9999 포트를 사용 중인 프로세스 확인:
 ```bash
-./bin/commManager 9090
+lsof -i :9999
 ```
 
 ## 라이선스
