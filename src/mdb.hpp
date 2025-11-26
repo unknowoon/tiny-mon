@@ -16,6 +16,42 @@ public:
     virtual ~mdb_ITable() = default;
 };
 
+template<typename T>
+class primarykey;
+
+// cache_primarykey 클래스 정의
+template<typename T>
+class primarykey {
+public:
+    explicit primarykey(const T &val) : _key(val) {
+    }
+
+    const T &getKey() const {
+        return _key;
+    }
+
+    bool operator==(const primarykey<T> &other) const {
+        return _key == other._key;
+    }
+
+private:
+    T _key;
+};
+
+namespace std {
+
+    template<typename T>
+    struct hash<primarykey<T>> {
+        size_t operator()(const primarykey<T>& k) const;
+    };
+
+    template<typename T>
+    size_t hash<primarykey<T>>::operator()(const primarykey<T>& k) const {
+        return std::hash<T>()(k.getKey());
+    }
+
+}
+
 enum class CRUD {
     CREATE,
     UPDATE,
@@ -98,7 +134,7 @@ public:
                              const value_type &value) {
         bool isCreate = false;
         value_type before{};
-        _record.insert_or_update(key, value, isCreate, before);
+        _record.upsert(key, value, isCreate, before);
 
         CRUD op = isCreate ? CRUD::CREATE : CRUD::UPDATE;
         value_type after = value; // 연산 후 값
