@@ -36,6 +36,18 @@ target_link_libraries(logger PRIVATE
     Threads::Threads
 )
 
+# Socket Server 라이브러리 빌드
+add_library(socket_server STATIC
+    src/tcp_socket.c
+    src/epoll_handler.c
+    src/client_manager.c
+    src/socket_server.c
+)
+
+target_include_directories(socket_server PUBLIC
+    ${CMAKE_SOURCE_DIR}/src
+)
+
 add_executable(tiny_mon
         src/main.cpp
         src/comm.c
@@ -47,8 +59,17 @@ target_include_directories(tiny_mon PRIVATE src libsrc)
 
 target_link_libraries(tiny_mon PRIVATE logger)
 
+# Echo Server 예제
+add_executable(example_echo
+    src/example_echo.c
+)
+
+target_include_directories(example_echo PRIVATE src)
+
+target_link_libraries(example_echo PRIVATE socket_server)
+
 # 설치 규칙
-install(TARGETS tiny_mon logger
+install(TARGETS tiny_mon example_echo logger socket_server
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
