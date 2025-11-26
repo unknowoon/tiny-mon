@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 project(tiny-mon VERSION 1.0 LANGUAGES C CXX)
 
 # C++ 표준 설정
@@ -46,6 +46,8 @@ add_executable(tiny_mon
 target_include_directories(tiny_mon PRIVATE src libsrc)
 
 target_link_libraries(tiny_mon PRIVATE logger)
+
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/unittest")
 
 # 설치 규칙
 install(TARGETS tiny_mon logger
