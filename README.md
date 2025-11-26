@@ -6,20 +6,28 @@ TCP 서버 기반의 모니터링 시스템
 
 ```
 tiny-mon/
-├── CMakeLists.txt       # CMake 빌드 설정
-├── Dockerfile           # Docker 빌드 설정
-├── shl/                 # 셸 스크립트
-│   ├── build.sh         # 빌드 스크립트
-│   └── clean.sh         # 클린 스크립트
-├── bin/                 # 빌드된 실행 파일
-├── libsrc/              # 라이브러리 소스
-│   ├── libLogger.h      # 로거 헤더
-│   └── libLogger.c      # 로거 구현
-└── src/                 # 애플리케이션 소스
-    ├── main.cpp         # 메인 엔트리
-    ├── comm.h/c         # 통신 모듈
-    ├── commManager.h/c  # 연결 관리
-    └── mdb.hpp          # 메모리 DB
+├── CMakeLists.txt          # CMake 빌드 설정
+├── Dockerfile              # Docker 빌드 설정
+├── shl/                    # 셸 스크립트
+│   ├── build.sh            # 빌드 스크립트
+│   └── clean.sh            # 클린 스크립트
+├── bin/                    # 빌드된 실행 파일
+├── libsrc/                 # 라이브러리 소스
+│   ├── libLogger.h         # 로거 헤더
+│   └── libLogger.c         # 로거 구현
+└── src/                    # 애플리케이션 소스
+    ├── main.cpp            # 메인 엔트리
+    ├── socket_server.h/c   # 소켓 서버 (메인 서버 로직)
+    ├── tcp_socket.h/c      # TCP 소켓 생성/설정
+    ├── epoll_handler.h/c   # epoll 이벤트 처리
+    ├── client_manager.h/c  # 클라이언트 연결 관리
+    ├── comm.h/c            # 통신 모듈
+    ├── commManager.h/c     # 연결 관리
+    ├── mdb.hpp             # 메모리 DB
+    ├── example_echo.c      # 에코 서버 예제
+    └── unittest/           # 유닛 테스트
+        ├── test_main.cpp   # 테스트 메인
+        └── test_mdb.cpp    # MDB 테스트
 ```
 
 ## 요구사항
