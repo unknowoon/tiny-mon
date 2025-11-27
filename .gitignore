@@ -103,3 +103,6 @@ Testing/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# TinyMQ 데이터 디렉토리
+data/
