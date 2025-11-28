@@ -32,7 +32,7 @@ RUN microdnf -y install libstdc++ && \
 WORKDIR /app
 
 # 빌드된 바이너리만 복사
-COPY --from=builder /app/bin/petiq .
+COPY --from=builder /app/bin/quekka .
 
 # 로그 디렉토리 생성
 RUN mkdir -p /app/logs
@@ -41,4 +41,4 @@ RUN mkdir -p /app/logs
 EXPOSE 9999
 
 # 실행
-CMD ["./petiq"]
+CMD ["./quekka"]

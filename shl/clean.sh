@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Petiq 클린 스크립트
+# Quekka 클린 스크립트
 
 # 색상 정의
 RED='\033[0;31m'
@@ -8,7 +8,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-echo -e "${YELLOW}=== Petiq 클린 스크립트 ===${NC}"
+echo -e "${YELLOW}=== Quekka 클린 스크립트 ===${NC}"
 
 # 빌드 디렉토리 삭제
 if [ -d "build" ]; then

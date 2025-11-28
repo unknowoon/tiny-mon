@@ -1,8 +1,6 @@
-# Petiq
+# Quekka
 
-Kafka 스타일 경량 메시지 큐 시스템 (petit + topique + queue)
-
-> 프랑스어로 "작은(petit) 주제(topique)"와 영어 "큐(queue)"의 조합
+Kafka 스타일 경량 메시지 큐 시스템 (queue + Kafka)
 
 ## 프로젝트 목표
 
@@ -30,7 +28,7 @@ Apache Kafka의 핵심 개념을 학습하고, 이를 C/C++로 직접 구현하�
 ## 프로젝트 구조
 
 ```
-petiq/
+quekka/
 ├── CMakeLists.txt          # CMake 빌드 설정
 ├── Dockerfile              # Docker 빌드 설정
 ├── shl/                    # 셸 스크립트
@@ -67,7 +65,7 @@ petiq/
 ./shl/build.sh
 
 # 서버 실행
-./bin/petiq
+./bin/quekka
 
 # 클라이언트 연결 테스트 (다른 터미널에서)
 nc localhost 9999
@@ -77,8 +75,8 @@ nc localhost 9999
 
 ```bash
 # 빌드 & 실행
-docker build -t petiq:latest .
-docker run -p 9999:9999 --name petiq petiq:latest
+docker build -t quekka:latest .
+docker run -p 9999:9999 --name quekka quekka:latest
 ```
 
 ## 개발 환경
