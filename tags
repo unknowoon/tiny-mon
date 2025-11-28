@@ -4,123 +4,301 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-ARCHITECTURE_ID	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#   define ARCHITECTURE_ID /;"	d	file:
-ARCHITECTURE_ID	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define ARCHITECTURE_ID /;"	d	file:
-ARCHITECTURE_ID	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define ARCHITECTURE_ID$/;"	d	file:
-BACKLOG	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/commManager.c	/^#define BACKLOG /;"	d	file:
-BUFFER_SIZE	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/comm.h	/^#define BUFFER_SIZE /;"	d
-CMAKE_BINARY_DIR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/Makefile	/^CMAKE_BINARY_DIR = \/Users\/woojibeom\/Documents\/WorkSpace\/tiny-mon$/;"	m
-CMAKE_COMMAND	/Users/woojibeom/Documents/WorkSpace/tiny-mon/Makefile	/^CMAKE_COMMAND = \/opt\/homebrew\/bin\/cmake$/;"	m
-CMAKE_SOURCE_DIR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/Makefile	/^CMAKE_SOURCE_DIR = \/Users\/woojibeom\/Documents\/WorkSpace\/tiny-mon$/;"	m
-COMM_H	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/comm.h	/^#define COMM_H$/;"	d
-COMPILER_ID	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_ID /;"	d	file:
-COMPILER_VERSION	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION /;"	d	file:
-COMPILER_VERSION_INTERNAL	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION_INTERNAL /;"	d	file:
-COMPILER_VERSION_INTERNAL	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_INTERNAL /;"	d	file:
-COMPILER_VERSION_INTERNAL	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_INTERNAL /;"	d	file:
-COMPILER_VERSION_INTERNAL_STR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_INTERNAL_STR /;"	d	file:
-COMPILER_VERSION_MAJOR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_MAJOR /;"	d	file:
-COMPILER_VERSION_MAJOR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION_MAJOR /;"	d	file:
-COMPILER_VERSION_MAJOR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_MAJOR /;"	d	file:
-COMPILER_VERSION_MAJOR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_MAJOR /;"	d	file:
-COMPILER_VERSION_MINOR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_MINOR /;"	d	file:
-COMPILER_VERSION_MINOR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION_MINOR /;"	d	file:
-COMPILER_VERSION_MINOR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_MINOR /;"	d	file:
-COMPILER_VERSION_MINOR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_MINOR /;"	d	file:
-COMPILER_VERSION_PATCH	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_PATCH /;"	d	file:
-COMPILER_VERSION_PATCH	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION_PATCH /;"	d	file:
-COMPILER_VERSION_PATCH	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_PATCH /;"	d	file:
-COMPILER_VERSION_PATCH	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_PATCH /;"	d	file:
-COMPILER_VERSION_TWEAK	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_TWEAK /;"	d	file:
-COMPILER_VERSION_TWEAK	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_TWEAK /;"	d	file:
-COMPILER_VERSION_TWEAK	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_TWEAK /;"	d	file:
-C_STD	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define C_STD /;"	d	file:
-C_STD_11	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#define C_STD_11 /;"	d	file:
-C_STD_17	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#define C_STD_17 /;"	d	file:
-C_STD_23	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#define C_STD_23 /;"	d	file:
-C_STD_99	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#define C_STD_99 /;"	d	file:
-C_VERSION	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define C_VERSION /;"	d	file:
-C_VERSION	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define C_VERSION$/;"	d	file:
-C_VERSION	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define C_VERSION /;"	d	file:
-DEC	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#define DEC(/;"	d	file:
-EQUALS	/Users/woojibeom/Documents/WorkSpace/tiny-mon/Makefile	/^EQUALS = =$/;"	m
-HEX	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#define HEX(/;"	d	file:
-ID_VOID_MAIN	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define ID_VOID_MAIN$/;"	d	file:
-LOGGER_H	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^#define LOGGER_H$/;"	d
-LOG_DEBUG	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^    LOG_DEBUG,$/;"	e	enum:__anon1
-LOG_ERROR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^    LOG_ERROR,$/;"	e	enum:__anon1
-LOG_FATAL	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^    LOG_FATAL$/;"	e	enum:__anon1
-LOG_INFO	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^    LOG_INFO,$/;"	e	enum:__anon1
-LOG_WARNING	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^    LOG_WARNING,$/;"	e	enum:__anon1
-LogLevel	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^} LogLevel;$/;"	t	typeref:enum:__anon1
-Logger	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^} Logger;$/;"	t	typeref:struct:__anon2
-MAX_CLIENTS	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/comm.h	/^#define MAX_CLIENTS /;"	d
-MAX_FILENAME_LEN	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^#define MAX_FILENAME_LEN /;"	d
-PLATFORM_ID	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define PLATFORM_ID /;"	d	file:
-PLATFORM_ID	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define PLATFORM_ID$/;"	d	file:
-PLATFORM_ID	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define PLATFORM_ID /;"	d	file:
-PLATFORM_ID	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define PLATFORM_ID$/;"	d	file:
-PORT	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/commManager.c	/^#define PORT /;"	d	file:
-RM	/Users/woojibeom/Documents/WorkSpace/tiny-mon/Makefile	/^RM = \/opt\/homebrew\/bin\/cmake -E rm -f$/;"	m
-SHELL	/Users/woojibeom/Documents/WorkSpace/tiny-mon/Makefile	/^SHELL = \/bin\/sh$/;"	m
-SIMULATE_ID	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_ID /;"	d	file:
-SIMULATE_ID	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define SIMULATE_ID /;"	d	file:
-SIMULATE_VERSION_MAJOR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_MAJOR /;"	d	file:
-SIMULATE_VERSION_MAJOR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define SIMULATE_VERSION_MAJOR /;"	d	file:
-SIMULATE_VERSION_MINOR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_MINOR /;"	d	file:
-SIMULATE_VERSION_MINOR	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define SIMULATE_VERSION_MINOR /;"	d	file:
-SIMULATE_VERSION_PATCH	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#   define SIMULATE_VERSION_PATCH /;"	d	file:
-SIMULATE_VERSION_PATCH	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_PATCH /;"	d	file:
-SIMULATE_VERSION_PATCH	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define SIMULATE_VERSION_PATCH /;"	d	file:
-STRINGIFY	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#define STRINGIFY(/;"	d	file:
-STRINGIFY_HELPER	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#define STRINGIFY_HELPER(/;"	d	file:
-__has_include	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^#  define __has_include(/;"	d	file:
-client_addr	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/comm.h	/^    struct sockaddr_in client_addr;$/;"	m	struct:__anon3	typeref:struct:__anon3::sockaddr_in
-client_len	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/comm.h	/^    socklen_t client_len;$/;"	m	struct:__anon3
-color_reset	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.c	/^static const char *color_reset = "\\033[0m";$/;"	v	file:
-comm_cleanup	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/comm.c	/^void comm_cleanup(int socket_fd) {$/;"	f
-comm_context_t	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/comm.h	/^} comm_context_t;$/;"	t	typeref:struct:__anon3
-comm_handle_data	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/comm.c	/^int comm_handle_data(int socket_fd) {$/;"	f
-comm_init	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/comm.c	/^int comm_init(int socket_fd) {$/;"	f
-console_output	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^    int console_output;$/;"	m	struct:__anon2
-const	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define const$/;"	d	file:
-create_server_socket	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/commManager.c	/^int create_server_socket(int port) {$/;"	f
-file	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^    FILE *file;$/;"	m	struct:__anon2
-file_output	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^    int file_output;$/;"	m	struct:__anon2
-filename	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^    char filename[MAX_FILENAME_LEN];$/;"	m	struct:__anon2
-g_logger	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.c	/^Logger g_logger = {$/;"	v
-handle_client_connection	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/commManager.c	/^void handle_client_connection(int server_fd) {$/;"	f
-info_arch	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v
-info_compiler	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";$/;"	v
-info_cray	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^char const *info_cray = "INFO" ":" "compiler_wrapper[CrayPrgEnv]";$/;"	v
-info_language_extensions_default	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^const char* info_language_extensions_default = "INFO" ":" "extensions_default["$/;"	v
-info_language_standard_default	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^const char* info_language_standard_default =$/;"	v
-info_platform	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";$/;"	v
-info_simulate	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_simulate = "INFO" ":" "simulate[" SIMULATE_ID "]";$/;"	v
-info_simulate_version	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_simulate_version[] = {$/;"	v
-info_version	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version[] = {$/;"	v
-info_version	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_version = "INFO" ":" "compiler_version[" COMPILER_VERSION "]";$/;"	v
-info_version_internal	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version_internal[] = {$/;"	v
-info_version_internal	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_version_internal = "INFO" ":" "compiler_version_internal[" COMPILER_VERSION_INTERNAL_STR "]";$/;"	v
-level	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^    LogLevel level;$/;"	m	struct:__anon2
-level_colors	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.c	/^static const char *level_colors[] = {$/;"	v	file:
-level_strings	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.c	/^static const char *level_strings[] = {$/;"	v	file:
-log_debug	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^#define log_debug(/;"	d
-log_error	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^#define log_error(/;"	d
-log_fatal	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^#define log_fatal(/;"	d
-log_info	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^#define log_info(/;"	d
-log_mutex	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.c	/^static pthread_mutex_t log_mutex = PTHREAD_MUTEX_INITIALIZER;$/;"	v	file:
-log_warning	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.h	/^#define log_warning(/;"	d
-log_write	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.c	/^void log_write(LogLevel level, const char *file, const char *function, int line, const char *format, ...) {$/;"	f
-logger_close	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.c	/^void logger_close(void) {$/;"	f
-logger_enable_console	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.c	/^void logger_enable_console(int enable) {$/;"	f
-logger_enable_file	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.c	/^void logger_enable_file(int enable) {$/;"	f
-logger_init	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.c	/^void logger_init(const char *filename, LogLevel level) {$/;"	f
-logger_set_level	/Users/woojibeom/Documents/WorkSpace/tiny-mon/libsrc/libLogger.c	/^void logger_set_level(LogLevel level) {$/;"	f
-main	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^int main(argc, argv) int argc; char *argv[];$/;"	f
-main	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^void main() {}$/;"	f
-main	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/comm.c	/^int main(int argc, char *argv[]) {$/;"	f
-main	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/commManager.c	/^int main(int argc, char *argv[]) {$/;"	f
-qnxnto	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
-socket_fd	/Users/woojibeom/Documents/WorkSpace/tiny-mon/src/comm.h	/^    int socket_fd;$/;"	m	struct:__anon3
-volatile	/Users/woojibeom/Documents/WorkSpace/tiny-mon/CMakeFiles/4.1.2/CompilerIdC/CMakeCCompilerId.c	/^# define volatile$/;"	d	file:
+ARCHITECTURE_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#   define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define ARCHITECTURE_ID$/;"	d	file:
+ARCHITECTURE_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define ARCHITECTURE_ID$/;"	d	file:
+BACKLOG	src/commManager.h	/^#define BACKLOG /;"	d
+BUFFER_SIZE	src/comm.h	/^#define BUFFER_SIZE /;"	d
+BUFFER_SIZE	src/socket_server.c	/^#define BUFFER_SIZE /;"	d	file:
+CLIENT_MANAGER_H	src/client_manager.h	/^#define CLIENT_MANAGER_H$/;"	d
+CLIENT_MAX_CLIENTS	src/client_manager.h	/^#define CLIENT_MAX_CLIENTS /;"	d
+CMAKE_BINARY_DIR	cmake-build-debug/Makefile	/^CMAKE_BINARY_DIR = \/Users\/woojibeom\/Documents\/WorkSpace\/tiny-mon\/cmake-build-debug$/;"	m
+CMAKE_BINARY_DIR	cmake-build-debug/src/unittest/Makefile	/^CMAKE_BINARY_DIR = \/Users\/woojibeom\/Documents\/WorkSpace\/tiny-mon\/cmake-build-debug$/;"	m
+CMAKE_COMMAND	cmake-build-debug/Makefile	/^CMAKE_COMMAND = \/Applications\/CLion.app\/Contents\/bin\/cmake\/mac\/aarch64\/bin\/cmake$/;"	m
+CMAKE_COMMAND	cmake-build-debug/src/unittest/Makefile	/^CMAKE_COMMAND = \/Applications\/CLion.app\/Contents\/bin\/cmake\/mac\/aarch64\/bin\/cmake$/;"	m
+CMAKE_SOURCE_DIR	cmake-build-debug/Makefile	/^CMAKE_SOURCE_DIR = \/Users\/woojibeom\/Documents\/WorkSpace\/tiny-mon$/;"	m
+CMAKE_SOURCE_DIR	cmake-build-debug/src/unittest/Makefile	/^CMAKE_SOURCE_DIR = \/Users\/woojibeom\/Documents\/WorkSpace\/tiny-mon$/;"	m
+COMMMANAGER_H	src/commManager.h	/^#define COMMMANAGER_H$/;"	d
+COMM_H	src/comm.h	/^#define COMM_H$/;"	d
+COMPILER_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_ID /;"	d	file:
+COMPILER_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_ID /;"	d	file:
+COMPILER_VERSION	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION /;"	d	file:
+COMPILER_VERSION	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define COMPILER_VERSION /;"	d	file:
+COMPILER_VERSION_INTERNAL	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL_STR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_INTERNAL_STR /;"	d	file:
+COMPILER_VERSION_INTERNAL_STR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_INTERNAL_STR /;"	d	file:
+COMPILER_VERSION_MAJOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^  # define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MINOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^  # define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^  # define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_TWEAK	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_TWEAK /;"	d	file:
+CREATE	src/mdb.hpp	/^    CREATE,$/;"	m	class:CRUD
+CRUD	src/mdb.hpp	/^enum class CRUD {$/;"	c
+CXX_STD	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#    define CXX_STD /;"	d	file:
+CXX_STD	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define CXX_STD /;"	d	file:
+CXX_STD_11	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define CXX_STD_11 /;"	d	file:
+CXX_STD_14	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define CXX_STD_14 /;"	d	file:
+CXX_STD_17	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define CXX_STD_17 /;"	d	file:
+CXX_STD_20	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define CXX_STD_20 /;"	d	file:
+CXX_STD_23	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define CXX_STD_23 /;"	d	file:
+CXX_STD_98	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define CXX_STD_98 /;"	d	file:
+C_STD	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define C_STD /;"	d	file:
+C_STD_11	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#define C_STD_11 /;"	d	file:
+C_STD_17	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#define C_STD_17 /;"	d	file:
+C_STD_23	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#define C_STD_23 /;"	d	file:
+C_STD_99	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#define C_STD_99 /;"	d	file:
+C_VERSION	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define C_VERSION /;"	d	file:
+C_VERSION	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define C_VERSION$/;"	d	file:
+C_VERSION	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define C_VERSION /;"	d	file:
+DEC	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#define DEC(/;"	d	file:
+DEC	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define DEC(/;"	d	file:
+EPOLL_HANDLER_H	src/epoll_handler.h	/^#define EPOLL_HANDLER_H$/;"	d
+EPOLL_MAX_EVENTS	src/epoll_handler.h	/^#define EPOLL_MAX_EVENTS /;"	d
+EQUALS	cmake-build-debug/Makefile	/^EQUALS = =$/;"	m
+EQUALS	cmake-build-debug/src/unittest/Makefile	/^EQUALS = =$/;"	m
+HEX	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#define HEX(/;"	d	file:
+HEX	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define HEX(/;"	d	file:
+ID_VOID_MAIN	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define ID_VOID_MAIN$/;"	d	file:
+LOGGER_H	libsrc/libLogger.h	/^#define LOGGER_H$/;"	d
+LOG_DEBUG	libsrc/libLogger.h	/^    LOG_DEBUG,$/;"	e	enum:__anon1
+LOG_ERROR	libsrc/libLogger.h	/^    LOG_ERROR,$/;"	e	enum:__anon1
+LOG_FATAL	libsrc/libLogger.h	/^    LOG_FATAL$/;"	e	enum:__anon1
+LOG_INFO	libsrc/libLogger.h	/^    LOG_INFO,$/;"	e	enum:__anon1
+LOG_WARNING	libsrc/libLogger.h	/^    LOG_WARNING,$/;"	e	enum:__anon1
+LogLevel	libsrc/libLogger.h	/^} LogLevel;$/;"	t	typeref:enum:__anon1
+Logger	libsrc/libLogger.h	/^} Logger;$/;"	t	typeref:struct:__anon2
+MAX_CLIENTS	src/comm.h	/^#define MAX_CLIENTS /;"	d
+MAX_FILENAME_LEN	libsrc/libLogger.h	/^#define MAX_FILENAME_LEN /;"	d
+MDB_H	src/mdb.hpp	/^#define MDB_H$/;"	d
+PLATFORM_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define PLATFORM_ID$/;"	d	file:
+PORT	src/commManager.h	/^#define PORT /;"	d
+RM	cmake-build-debug/Makefile	/^RM = \/Applications\/CLion.app\/Contents\/bin\/cmake\/mac\/aarch64\/bin\/cmake -E rm -f$/;"	m
+RM	cmake-build-debug/src/unittest/Makefile	/^RM = \/Applications\/CLion.app\/Contents\/bin\/cmake\/mac\/aarch64\/bin\/cmake -E rm -f$/;"	m
+SHELL	cmake-build-debug/Makefile	/^SHELL = \/bin\/sh$/;"	m
+SHELL	cmake-build-debug/src/unittest/Makefile	/^SHELL = \/bin\/sh$/;"	m
+SIMULATE_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_ID /;"	d	file:
+SIMULATE_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define SIMULATE_ID /;"	d	file:
+SIMULATE_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_ID /;"	d	file:
+SIMULATE_ID	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define SIMULATE_ID /;"	d	file:
+SIMULATE_VERSION_MAJOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_MAJOR /;"	d	file:
+SIMULATE_VERSION_MAJOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define SIMULATE_VERSION_MAJOR /;"	d	file:
+SIMULATE_VERSION_MAJOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_VERSION_MAJOR /;"	d	file:
+SIMULATE_VERSION_MAJOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define SIMULATE_VERSION_MAJOR /;"	d	file:
+SIMULATE_VERSION_MINOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_MINOR /;"	d	file:
+SIMULATE_VERSION_MINOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define SIMULATE_VERSION_MINOR /;"	d	file:
+SIMULATE_VERSION_MINOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_VERSION_MINOR /;"	d	file:
+SIMULATE_VERSION_MINOR	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define SIMULATE_VERSION_MINOR /;"	d	file:
+SIMULATE_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#   define SIMULATE_VERSION_PATCH /;"	d	file:
+SIMULATE_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_PATCH /;"	d	file:
+SIMULATE_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define SIMULATE_VERSION_PATCH /;"	d	file:
+SIMULATE_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define SIMULATE_VERSION_PATCH /;"	d	file:
+SIMULATE_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_VERSION_PATCH /;"	d	file:
+SIMULATE_VERSION_PATCH	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define SIMULATE_VERSION_PATCH /;"	d	file:
+SOCKET_SERVER_H	src/socket_server.h	/^#define SOCKET_SERVER_H$/;"	d
+STRINGIFY	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#define STRINGIFY(/;"	d	file:
+STRINGIFY	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define STRINGIFY(/;"	d	file:
+STRINGIFY_HELPER	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#define STRINGIFY_HELPER(/;"	d	file:
+STRINGIFY_HELPER	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define STRINGIFY_HELPER(/;"	d	file:
+TCP_SOCKET_H	src/tcp_socket.h	/^#define TCP_SOCKET_H$/;"	d
+TEST	src/unittest/test_mdb.cpp	/^TEST(cache_db, usage) {$/;"	f
+UPDATE	src/mdb.hpp	/^    UPDATE,$/;"	m	class:CRUD
+__has_include	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^#  define __has_include(/;"	d	file:
+__has_include	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define __has_include(/;"	d	file:
+_callback	src/mdb.hpp	/^    callback_type _callback;$/;"	m	class:table
+_data	src/mdb.hpp	/^    map_type _data;$/;"	m	class:columns
+_key	src/mdb.hpp	/^    T _key;$/;"	m	class:primarykey
+_record	src/mdb.hpp	/^    Columns _record;$/;"	m	class:table
+_tables	src/mdb.hpp	/^    std::unordered_map<std::string, std::unique_ptr<mdb_ITable> > _tables;$/;"	m	class:mdb
+addr	src/client_manager.h	/^	struct sockaddr_in addr;$/;"	m	struct:__anon4	typeref:struct:__anon4::sockaddr_in
+addr	src/socket_server.c	/^	struct sockaddr_in addr;$/;"	m	struct:socket_server_t	typeref:struct:socket_server_t::sockaddr_in	file:
+callbacks	src/socket_server.c	/^	server_callbacks_t callbacks;$/;"	m	struct:socket_server_t	file:
+client_addr	src/comm.h	/^    struct sockaddr_in client_addr;$/;"	m	struct:__anon3	typeref:struct:__anon3::sockaddr_in
+client_count	src/client_manager.c	/^	int client_count;$/;"	m	struct:client_manager_t	file:
+client_info_t	src/client_manager.h	/^} client_info_t;$/;"	t	typeref:struct:__anon4
+client_len	src/comm.h	/^    socklen_t client_len;$/;"	m	struct:__anon3
+client_manager_add	src/client_manager.c	/^client_info_t* client_manager_add(client_manager_t *mgr, int fd, struct sockaddr_in addr) {$/;"	f
+client_manager_count	src/client_manager.c	/^int client_manager_count(client_manager_t *mgr) {$/;"	f
+client_manager_create	src/client_manager.c	/^client_manager_t* client_manager_create(void) {$/;"	f
+client_manager_destroy	src/client_manager.c	/^void client_manager_destroy(client_manager_t *mgr) {$/;"	f
+client_manager_find	src/client_manager.c	/^client_info_t* client_manager_find(client_manager_t *mgr, int fd) {$/;"	f
+client_manager_remove	src/client_manager.c	/^void client_manager_remove(client_manager_t *mgr, int fd) {$/;"	f
+client_manager_t	src/client_manager.c	/^struct client_manager_t {$/;"	s	file:
+client_manager_t	src/client_manager.h	/^typedef struct client_manager_t client_manager_t;$/;"	t	typeref:struct:client_manager_t
+client_mgr	src/socket_server.c	/^	client_manager_t *client_mgr;$/;"	m	struct:socket_server_t	file:
+client_node_t	src/client_manager.c	/^typedef struct client_node_t {$/;"	s	file:
+client_node_t	src/client_manager.c	/^} client_node_t;$/;"	t	typeref:struct:client_node_t	file:
+clients	src/client_manager.c	/^	client_node_t *clients;$/;"	m	struct:client_manager_t	file:
+color_reset	libsrc/libLogger.c	/^static const char *color_reset = "\\033[0m";$/;"	v	file:
+columns	src/mdb.hpp	/^class columns {$/;"	c
+comm_cleanup	src/comm.c	/^void comm_cleanup(int socket_fd) {$/;"	f
+comm_context_t	src/comm.h	/^} comm_context_t;$/;"	t	typeref:struct:__anon3
+comm_handle_data	src/comm.c	/^int comm_handle_data(int socket_fd) {$/;"	f
+comm_init	src/comm.c	/^int comm_init(int socket_fd) {$/;"	f
+console_output	libsrc/libLogger.h	/^    int console_output;$/;"	m	struct:__anon2
+const	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define const$/;"	d	file:
+create_server_socket	src/commManager.c	/^int create_server_socket(int port) {$/;"	f
+dispatch_callback_async	src/mdb.hpp	/^    std::future<void> dispatch_callback_async(const key_type &key,$/;"	f	class:table
+dropTable	src/mdb.hpp	/^    bool dropTable(const std::string &name) {$/;"	f	class:mdb
+epoll	src/socket_server.c	/^	epoll_handler_t *epoll;$/;"	m	struct:socket_server_t	file:
+epoll_event_callback	src/socket_server.c	/^static void epoll_event_callback(int fd, uint32_t events, void *user_data) {$/;"	f	file:
+epoll_event_callback_fn	src/epoll_handler.h	/^typedef void (*epoll_event_callback_fn)(int fd, uint32_t events, void *user_data);$/;"	t
+epoll_fd	src/epoll_handler.c	/^	int epoll_fd;$/;"	m	struct:epoll_handler_t	file:
+epoll_handler_add	src/epoll_handler.c	/^int epoll_handler_add(epoll_handler_t *handler, int fd, uint32_t events) {$/;"	f
+epoll_handler_create	src/epoll_handler.c	/^epoll_handler_t* epoll_handler_create(void) {$/;"	f
+epoll_handler_destroy	src/epoll_handler.c	/^void epoll_handler_destroy(epoll_handler_t *handler) {$/;"	f
+epoll_handler_get_fd	src/epoll_handler.c	/^int epoll_handler_get_fd(epoll_handler_t *handler) {$/;"	f
+epoll_handler_remove	src/epoll_handler.c	/^int epoll_handler_remove(epoll_handler_t *handler, int fd) {$/;"	f
+epoll_handler_t	src/epoll_handler.c	/^struct epoll_handler_t {$/;"	s	file:
+epoll_handler_t	src/epoll_handler.h	/^typedef struct epoll_handler_t epoll_handler_t;$/;"	t	typeref:struct:epoll_handler_t
+epoll_handler_wait	src/epoll_handler.c	/^int epoll_handler_wait(epoll_handler_t *handler, int timeout_ms,$/;"	f
+erase	src/mdb.hpp	/^    bool erase(const key_type &key, value_type &before) {$/;"	f	class:columns
+erase	src/mdb.hpp	/^    std::future<void> erase(const key_type &key) {$/;"	f	class:table
+events	src/epoll_handler.c	/^	struct epoll_event events[EPOLL_MAX_EVENTS];$/;"	m	struct:epoll_handler_t	typeref:struct:epoll_handler_t::epoll_event	file:
+fd	src/client_manager.h	/^	int fd;$/;"	m	struct:__anon4
+file	libsrc/libLogger.h	/^    FILE *file;$/;"	m	struct:__anon2
+file_output	libsrc/libLogger.h	/^    int file_output;$/;"	m	struct:__anon2
+filename	libsrc/libLogger.h	/^    char filename[MAX_FILENAME_LEN];$/;"	m	struct:__anon2
+g_logger	libsrc/libLogger.c	/^Logger g_logger = {$/;"	v
+g_server	src/example_echo.c	/^static socket_server_t *g_server = NULL;$/;"	v	file:
+get	src/mdb.hpp	/^    bool get(const key_type &key, value_type &out) const {$/;"	f	class:columns
+get	src/mdb.hpp	/^    bool get(const key_type &key, value_type &out) const {$/;"	f	class:table
+getKey	src/mdb.hpp	/^    const T &getKey() const {$/;"	f	class:primarykey
+getTable	src/mdb.hpp	/^    table<RecordType> &getTable($/;"	f	class:mdb
+handle_accept	src/socket_server.c	/^static void handle_accept(socket_server_t *server) {$/;"	f	file:
+handle_client	src/socket_server.c	/^static void handle_client(socket_server_t *server, int client_fd) {$/;"	f	file:
+handle_client_connection	src/commManager.c	/^void handle_client_connection(int server_fd) {$/;"	f
+has	src/mdb.hpp	/^    bool has(const key_type &key) const {$/;"	f	class:columns
+hasTable	src/mdb.hpp	/^    bool hasTable(const std::string &name) const {$/;"	f	class:mdb
+hash	src/mdb.hpp	/^    struct hash<primarykey<T>> {$/;"	s	namespace:std
+info	src/client_manager.c	/^	client_info_t info;$/;"	m	struct:client_node_t	file:
+info_arch	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v
+info_arch	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v
+info_compiler	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";$/;"	v
+info_compiler	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";$/;"	v
+info_cray	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^char const *info_cray = "INFO" ":" "compiler_wrapper[CrayPrgEnv]";$/;"	v
+info_cray	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const *info_cray = "INFO" ":" "compiler_wrapper[CrayPrgEnv]";$/;"	v
+info_language_extensions_default	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^const char* info_language_extensions_default = "INFO" ":" "extensions_default["$/;"	v
+info_language_extensions_default	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^const char* info_language_extensions_default = "INFO" ":" "extensions_default["$/;"	v
+info_language_standard_default	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^const char* info_language_standard_default =$/;"	v
+info_language_standard_default	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^const char* info_language_standard_default = "INFO" ":" "standard_default["$/;"	v
+info_platform	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";$/;"	v
+info_platform	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";$/;"	v
+info_simulate	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_simulate = "INFO" ":" "simulate[" SIMULATE_ID "]";$/;"	v
+info_simulate	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_simulate = "INFO" ":" "simulate[" SIMULATE_ID "]";$/;"	v
+info_simulate_version	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_simulate_version[] = {$/;"	v
+info_simulate_version	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_simulate_version[] = {$/;"	v
+info_version	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version[] = {$/;"	v
+info_version	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_version = "INFO" ":" "compiler_version[" COMPILER_VERSION "]";$/;"	v
+info_version	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version[] = {$/;"	v
+info_version	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_version = "INFO" ":" "compiler_version[" COMPILER_VERSION "]";$/;"	v
+info_version_internal	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version_internal[] = {$/;"	v
+info_version_internal	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_version_internal = "INFO" ":" "compiler_version_internal[" COMPILER_VERSION_INTERNAL_STR "]";$/;"	v
+info_version_internal	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version_internal[] = {$/;"	v
+info_version_internal	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_version_internal = "INFO" ":" "compiler_version_internal[" COMPILER_VERSION_INTERNAL_STR "]";$/;"	v
+level	libsrc/libLogger.h	/^    LogLevel level;$/;"	m	struct:__anon2
+level_colors	libsrc/libLogger.c	/^static const char *level_colors[] = {$/;"	v	file:
+level_strings	libsrc/libLogger.c	/^static const char *level_strings[] = {$/;"	v	file:
+listen_fd	src/socket_server.c	/^	int listen_fd;$/;"	m	struct:socket_server_t	file:
+log_debug	libsrc/libLogger.h	/^#define log_debug(/;"	d
+log_error	libsrc/libLogger.h	/^#define log_error(/;"	d
+log_fatal	libsrc/libLogger.h	/^#define log_fatal(/;"	d
+log_info	libsrc/libLogger.h	/^#define log_info(/;"	d
+log_mutex	libsrc/libLogger.c	/^static pthread_mutex_t log_mutex = PTHREAD_MUTEX_INITIALIZER;$/;"	v	file:
+log_warning	libsrc/libLogger.h	/^#define log_warning(/;"	d
+log_write	libsrc/libLogger.c	/^void log_write(LogLevel level, const char *file, const char *function, int line, const char *format, ...) {$/;"	f
+logger_close	libsrc/libLogger.c	/^void logger_close(void) {$/;"	f
+logger_enable_console	libsrc/libLogger.c	/^void logger_enable_console(int enable) {$/;"	f
+logger_enable_file	libsrc/libLogger.c	/^void logger_enable_file(int enable) {$/;"	f
+logger_init	libsrc/libLogger.c	/^void logger_init(const char *filename, LogLevel level) {$/;"	f
+logger_set_level	libsrc/libLogger.c	/^void logger_set_level(LogLevel level) {$/;"	f
+main	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^int main(argc, argv) int argc; char *argv[];$/;"	f
+main	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^void main() {}$/;"	f
+main	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	src/example_echo.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	src/main.cpp	/^int main (int argc, char *argv[]) {$/;"	f
+main	src/unittest/test_main.cpp	/^int main(int argc, char** argv){$/;"	f
+mdb	src/mdb.hpp	/^class mdb {$/;"	c
+mdb_ITable	src/mdb.hpp	/^class mdb_ITable {$/;"	c
+next	src/client_manager.c	/^	struct client_node_t *next;$/;"	m	struct:client_node_t	typeref:struct:client_node_t::client_node_t	file:
+on_connection	src/example_echo.c	/^void on_connection(client_info_t *client, void *user_data) {$/;"	f
+on_connection	src/socket_server.h	/^	on_connection_fn on_connection;$/;"	m	struct:__anon5
+on_connection_fn	src/socket_server.h	/^typedef void (*on_connection_fn)(client_info_t *client, void *user_data);$/;"	t
+on_disconnected	src/example_echo.c	/^void on_disconnected(client_info_t *client, void *user_data) {$/;"	f
+on_disconnected	src/socket_server.h	/^	on_disconnected_fn on_disconnected;$/;"	m	struct:__anon5
+on_disconnected_fn	src/socket_server.h	/^typedef void (*on_disconnected_fn)(client_info_t *client, void *user_data);$/;"	t
+on_received	src/example_echo.c	/^void on_received(client_info_t *client, const char *data, size_t len, void *user_data) {$/;"	f
+on_received	src/socket_server.h	/^	on_received_fn on_received;$/;"	m	struct:__anon5
+on_received_fn	src/socket_server.h	/^typedef void (*on_received_fn)(client_info_t *client, const char *data, size_t len, void *user_data);$/;"	t
+on_start	src/example_echo.c	/^void on_start(void *user_data) {$/;"	f
+on_start	src/socket_server.h	/^	on_start_fn on_start;$/;"	m	struct:__anon5
+on_start_fn	src/socket_server.h	/^typedef void (*on_start_fn)(void *user_data);$/;"	t
+on_stop	src/example_echo.c	/^void on_stop(void *user_data) {$/;"	f
+on_stop	src/socket_server.h	/^	on_stop_fn on_stop;$/;"	m	struct:__anon5
+on_stop_fn	src/socket_server.h	/^typedef void (*on_stop_fn)(void *user_data);$/;"	t
+operator ()	src/mdb.hpp	/^    size_t hash<primarykey<T>>::operator()(const primarykey<T>& k) const {$/;"	f	class:std::hash
+operator ==	src/mdb.hpp	/^    bool operator==(const primarykey<T> &other) const {$/;"	f	class:primarykey
+primarykey	src/mdb.hpp	/^    explicit primarykey(const T &val) : _key(val) {$/;"	f	class:primarykey
+primarykey	src/mdb.hpp	/^class primarykey {$/;"	c
+qnxnto	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
+qnxnto	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v
+running	src/socket_server.c	/^	int running;$/;"	m	struct:socket_server_t	file:
+server_callbacks_t	src/socket_server.h	/^} server_callbacks_t;$/;"	t	typeref:struct:__anon5
+signal_handler	src/example_echo.c	/^void signal_handler(int sig) {$/;"	f
+socket_fd	src/comm.h	/^    int socket_fd;$/;"	m	struct:__anon3
+socket_server_create	src/socket_server.c	/^socket_server_t* socket_server_create($/;"	f
+socket_server_destroy	src/socket_server.c	/^void socket_server_destroy(socket_server_t *server) {$/;"	f
+socket_server_disconnect	src/socket_server.c	/^void socket_server_disconnect(client_info_t *client) {$/;"	f
+socket_server_send	src/socket_server.c	/^int socket_server_send(client_info_t *client, const char *data, size_t len) {$/;"	f
+socket_server_start	src/socket_server.c	/^int socket_server_start(socket_server_t *server) {$/;"	f
+socket_server_stop	src/socket_server.c	/^void socket_server_stop(socket_server_t *server) {$/;"	f
+socket_server_t	src/socket_server.c	/^struct socket_server_t {$/;"	s	file:
+socket_server_t	src/socket_server.h	/^typedef struct socket_server_t socket_server_t;$/;"	t	typeref:struct:socket_server_t
+std	src/mdb.hpp	/^namespace std {$/;"	n
+table	src/mdb.hpp	/^    explicit table(callback_type cb = nullptr)$/;"	f	class:table
+table	src/mdb.hpp	/^class table : public mdb_ITable {$/;"	c
+tcp_socket_accept	src/tcp_socket.c	/^int tcp_socket_accept(int listen_fd, struct sockaddr_in *client_addr) {$/;"	f
+tcp_socket_create_server	src/tcp_socket.c	/^int tcp_socket_create_server(const char *ip, int port, struct sockaddr_in *addr) {$/;"	f
+tcp_socket_set_nonblocking	src/tcp_socket.c	/^int tcp_socket_set_nonblocking(int fd) {$/;"	f
+upsert	src/mdb.hpp	/^    bool upsert(const key_type &key,$/;"	f	class:columns
+upsert	src/mdb.hpp	/^    std::future<void> upsert(const key_type &key,$/;"	f	class:table
+user_data	src/client_manager.h	/^	void *user_data;$/;"	m	struct:__anon4
+user_data	src/socket_server.c	/^	void *user_data;$/;"	m	struct:socket_server_t	file:
+volatile	cmake-build-debug/CMakeFiles/4.0.2/CompilerIdC/CMakeCCompilerId.c	/^# define volatile$/;"	d	file:

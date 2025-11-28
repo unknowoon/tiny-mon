@@ -1,11 +1,11 @@
-# Tiny-Mon
+# Petiq
 
-TCP 서버 기반의 모니터링 시스템
+Kafka 스타일 메시지 큐 시스템 (petit + topique + queue)
 
 ## 프로젝트 구조
 
 ```
-tiny-mon/
+petiq/
 ├── CMakeLists.txt          # CMake 빌드 설정
 ├── Dockerfile              # Docker 빌드 설정
 ├── shl/                    # 셸 스크립트
@@ -88,7 +88,7 @@ make -j$(nproc)
 
 ```bash
 # 서버 실행 (포트 9999)
-./bin/tiny_mon
+./bin/petiq
 ```
 
 ### 클라이언트 연결 테스트
@@ -111,29 +111,29 @@ nc localhost 9999
 ### 이미지 빌드
 
 ```bash
-docker build -t tiny-mon:latest .
+docker build -t petiq:latest .
 ```
 
 ### 컨테이너 실행
 
 ```bash
 # 백그라운드 실행
-docker run -d -p 9999:9999 --name tiny-mon tiny-mon:latest
+docker run -d -p 9999:9999 --name petiq petiq:latest
 
 # 포그라운드 실행 (로그 바로 확인)
-docker run -p 9999:9999 --name tiny-mon tiny-mon:latest
+docker run -p 9999:9999 --name petiq petiq:latest
 ```
 
 ### 로그 확인
 
 ```bash
-docker logs -f tiny-mon
+docker logs -f petiq
 ```
 
 ### 컨테이너 중지/삭제
 
 ```bash
-docker stop tiny-mon && docker rm tiny-mon
+docker stop petiq && docker rm petiq
 ```
 
 ## 클린
@@ -160,7 +160,7 @@ docker stop tiny-mon && docker rm tiny-mon
 
 - epoll 기반 이벤트 처리
 - 클라이언트 연결 관리
-- 로그 파일: `tiny_mon.log`
+- 로그 파일: `petiq.log`
 
 ## CMake 옵션
 
@@ -187,7 +187,7 @@ cmake -DCMAKE_C_COMPILER=clang ..
 ## 로그 파일
 
 실행 중 생성되는 로그 파일:
-- `tiny_mon.log` - 서버 로그
+- `petiq.log` - 서버 로그
 
 ## 개발 정보
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Tiny-Mon 빌드 스크립트
+# Petiq 빌드 스크립트
 
 set -e  # 에러 발생 시 중단
 
@@ -10,7 +10,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-echo -e "${GREEN}=== Tiny-Mon 빌드 스크립트 ===${NC}"
+echo -e "${GREEN}=== Petiq 빌드 스크립트 ===${NC}"
 
 # CMake 설치 확인
 if ! command -v cmake &> /dev/null; then

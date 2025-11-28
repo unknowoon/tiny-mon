@@ -5,10 +5,10 @@
 
 
 int main (int argc, char *argv[]) {
-    logger_init("tiny_mon.log", LOG_INFO);
+    logger_init("petiq.log", LOG_INFO);
 
     log_info("##########################################");
-    log_info("################ tiny_mon ################");
+    log_info("################# petiq ##################");
     log_info("##########################################");
 
     int port = 9999;

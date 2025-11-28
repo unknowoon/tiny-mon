@@ -2,8 +2,8 @@
   <configuration default="false" name="Docker Run" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
     <deployment type="dockerfile">
       <settings>
-        <option name="imageTag" value="tiny-mon:latest" />
-        <option name="containerName" value="tiny-mon" />
+        <option name="imageTag" value="petiq:latest" />
+        <option name="containerName" value="petiq" />
         <option name="sourceFilePath" value="Dockerfile" />
         <option name="portBindings">
           <list>

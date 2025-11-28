@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(tiny-mon VERSION 1.0 LANGUAGES C CXX)
+project(petiq VERSION 1.0 LANGUAGES C CXX)
 
 # C++ 표준 설정
 set(CMAKE_CXX_STANDARD 17)
@@ -48,16 +48,16 @@ target_include_directories(socket_server PUBLIC
     ${CMAKE_SOURCE_DIR}/src
 )
 
-add_executable(tiny_mon
+add_executable(petiq
         src/main.cpp
         src/comm.c
         src/commManager.c
         src/commManager.h
 )
 
-target_include_directories(tiny_mon PRIVATE src libsrc)
+target_include_directories(petiq PRIVATE src libsrc)
 
-target_link_libraries(tiny_mon PRIVATE logger)
+target_link_libraries(petiq PRIVATE logger)
 
 # Echo Server 예제
 add_executable(example_echo
@@ -69,7 +69,7 @@ target_include_directories(example_echo PRIVATE src)
 target_link_libraries(example_echo PRIVATE socket_server)
 
 # 설치 규칙
-install(TARGETS tiny_mon logger
+install(TARGETS petiq logger
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
