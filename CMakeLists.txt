@@ -53,6 +53,8 @@ add_executable(quekka
         src/comm.c
         src/commManager.c
         src/commManager.h
+        src/quekka.h
+        src/oopc/quekka.c
 )
 
 target_include_directories(quekka PRIVATE src libsrc)
