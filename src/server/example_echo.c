@@ -4,7 +4,7 @@
 #include <signal.h>
 #include <arpa/inet.h>
 
-#include "socket_server.h"
+#include "quekka/socket_server.h"
 
 // 전역 서버 포인터 (시그널 핸들러용)
 static socket_server_t *g_server = NULL;

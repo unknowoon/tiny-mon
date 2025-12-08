@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
-#include "tcp_socket.h"
+#include "quekka/tcp_socket.h"
 
 // 논블로킹 모드 설정
 int tcp_socket_set_nonblocking(int fd) {

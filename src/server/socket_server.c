@@ -6,10 +6,10 @@
 #include <sys/socket.h>
 #include <sys/epoll.h>
 
-#include "socket_server.h"
-#include "tcp_socket.h"
-#include "epoll_handler.h"
-#include "client_manager.h"
+#include "quekka/socket_server.h"
+#include "quekka/tcp_socket.h"
+#include "quekka/epoll_handler.h"
+#include "quekka/client_manager.h"
 
 #define BUFFER_SIZE 4096
 

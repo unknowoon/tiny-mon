@@ -1,4 +1,4 @@
-#include "comm.h"
+#include "quekka/comm.h"
 #include <stdlib.h>
 #include <stdio.h>
 

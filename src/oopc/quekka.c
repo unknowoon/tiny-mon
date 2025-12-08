@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "quekka.h"
+#include "quekka/quekka.h"
 
 #include <sys/socket.h>
 

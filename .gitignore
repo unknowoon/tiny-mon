@@ -4,8 +4,7 @@ cmake-build-*/
 out/
 
 # 빌드 결과물 - 실행 파일
-bin/commManager
-bin/comm
+bin/
 
 # 빌드 결과물 - 라이브러리
 *.a
