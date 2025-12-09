@@ -1,9 +1,9 @@
 //
-// Created by rnasterwoo on 2025. 12. 2..
+// Created by rnasterwoo on 25. 12. 9..
 //
 
-#ifndef QUEKKA_H
-#define QUEKKA_H
+#ifndef QUEKKA_PRODUCER_H
+#define QUEKKA_PRODUCER_H
 
 #include <stdio.h>
 
@@ -41,7 +41,5 @@ static quekka_t *g_quekka = NULL;
 // publisher config 에서 싱글턴으로 생성해야 하며, 요청하면 인스턴스 반환해줌
 quekka_t *get_instance(void);
 
-// 메시지 발행 함수
-int publish(const quekka_t *self, const char *topic, const char *payload, size_t size);
 
-#endif //QUEKKA_H
+#endif //QUEKKA_PRODUCER_H

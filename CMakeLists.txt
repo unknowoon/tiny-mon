@@ -89,12 +89,36 @@ target_link_libraries(quekka_server_lib PUBLIC
 )
 
 # =============================================================================
+# Producer Client Library (프로듀서 클라이언트 라이브러리)
+# =============================================================================
+# 카프카의 kafka-clients 처럼 사용자가 자신의 프로젝트에서 링크하여 사용
+#
+# 사용법 (외부 프로젝트에서):
+#   find_package(quekka REQUIRED)
+#   target_link_libraries(my_app PRIVATE quekka_producer)
+#
+# 또는 직접 링크:
+#   gcc my_app.c -I/path/to/quekka/include -L/path/to/quekka/lib -lquekka_producer
+# =============================================================================
+add_library(quekka_producer STATIC
+    src/producer/producer.c
+    include/quekka/producer.h
+)
+
+target_include_directories(quekka_producer PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
+
+target_link_libraries(quekka_producer PUBLIC
+    quekka_common
+)
+
+# =============================================================================
 # Main Executable (quekka)
 # =============================================================================
 add_executable(quekka
     src/server/main.cpp
-    src/oopc/quekka.c
-    include/quekka/quekka.h
 )
 
 target_link_libraries(quekka PRIVATE
@@ -127,7 +151,7 @@ if(UNIX AND NOT APPLE)
     )
 endif()
 
-install(TARGETS quekka_common quekka_server_lib
+install(TARGETS quekka_common quekka_server_lib quekka_producer
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
 )
