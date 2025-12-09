@@ -2,7 +2,7 @@
 #define SOCKET_SERVER_H
 
 #include <stddef.h>
-#include "client_manager.h"
+#include "internal/client_manager.h"
 
 // 불투명 포인터
 typedef struct socket_server_t socket_server_t;

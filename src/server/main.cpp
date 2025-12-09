@@ -1,7 +1,7 @@
 #include "quekka/mdb.hpp"
 #include "quekka/libLogger.h"
-#include "quekka/comm.h"
-#include "quekka/commManager.h"
+#include "internal/comm.h"
+#include "internal/commManager.h"
 
 
 int main (int argc, char *argv[]) {

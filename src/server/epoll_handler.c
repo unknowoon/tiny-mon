@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <sys/epoll.h>
 
-#include "quekka/epoll_handler.h"
+#include "internal/epoll_handler.h"
 
 struct epoll_handler_t {
 	int epoll_fd;

@@ -38,6 +38,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 # =============================================================================
 add_library(quekka_common STATIC
     src/common/libLogger.c
+    include/quekka/libLogger.h
 )
 
 target_link_libraries(quekka_common PUBLIC
@@ -57,6 +58,14 @@ if(UNIX AND NOT APPLE)
         src/server/socket_server.c
         src/server/comm.c
         src/server/commManager.c
+        # Public headers
+        include/quekka/socket_server.h
+        # Internal headers
+        include/internal/tcp_socket.h
+        include/internal/epoll_handler.h
+        include/internal/client_manager.h
+        include/internal/comm.h
+        include/internal/commManager.h
     )
 else()
     # macOS/Other: epoll 없이 기본 기능만
@@ -65,6 +74,13 @@ else()
         src/server/client_manager.c
         src/server/comm.c
         src/server/commManager.c
+        # Public headers
+        include/quekka/socket_server.h
+        # Internal headers
+        include/internal/tcp_socket.h
+        include/internal/client_manager.h
+        include/internal/comm.h
+        include/internal/commManager.h
     )
 endif()
 
@@ -78,6 +94,7 @@ target_link_libraries(quekka_server_lib PUBLIC
 add_executable(quekka
     src/server/main.cpp
     src/oopc/quekka.c
+    include/quekka/quekka.h
 )
 
 target_link_libraries(quekka PRIVATE

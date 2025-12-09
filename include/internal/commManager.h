@@ -14,7 +14,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include "comm.h"
+#include "internal/comm.h"
 
 #ifdef __cplusplus
 extern "C" {

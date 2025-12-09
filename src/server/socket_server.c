@@ -7,9 +7,9 @@
 #include <sys/epoll.h>
 
 #include "quekka/socket_server.h"
-#include "quekka/tcp_socket.h"
-#include "quekka/epoll_handler.h"
-#include "quekka/client_manager.h"
+#include "internal/tcp_socket.h"
+#include "internal/epoll_handler.h"
+#include "internal/client_manager.h"
 
 #define BUFFER_SIZE 4096
 
