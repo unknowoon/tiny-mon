@@ -131,6 +131,10 @@ target_link_libraries(quekka PRIVATE
 if(UNIX AND NOT APPLE)
     add_executable(example_echo
         src/server/example_echo.c
+            include/quekka/Quekka_config.cpp
+            include/quekka/Quekka_config.h
+            include/quekka/Quekka_producer.cpp
+            include/quekka/Quekka_producer.h
     )
 
     target_link_libraries(example_echo PRIVATE
