@@ -13,12 +13,15 @@ WORKDIR /app
 # 소스 복사
 COPY CMakeLists.txt .
 COPY src/ src/
-COPY libsrc/ libsrc/
+COPY include/ include/
 
-# 빌드
+# 출력 디렉토리 미리 생성
+RUN mkdir -p bin lib
+
+# 빌드 (quekka 타겟만)
 RUN mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=Release .. && \
-    make -j$(nproc)
+    make quekka -j$(nproc)
 
 # ============================================
 # Stage 2: Runtime

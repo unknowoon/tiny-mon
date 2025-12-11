@@ -5,10 +5,11 @@
 #ifndef QUEKKA_QUEKKA_CONFIG_H
 #define QUEKKA_QUEKKA_CONFIG_H
 
-struct _Quekka_config {
+typedef struct _Quekka_config {
     char _ip[32];
     char _port[32];
-};
+    int status;
+} Quekka_config;
 
 /**
  * address "localhost:9999"

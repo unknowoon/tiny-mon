@@ -5,12 +5,14 @@
 #ifndef QUEKKA_QUEKKA_PRODUCER_H
 #define QUEKKA_QUEKKA_PRODUCER_H
 
+#include <stddef.h>
+#include "Quekka_config.h"
 
-struct Quekka_producer {
+typedef struct Quekka_producer {
     int _fd;
-}typedef Quekka_producer;
+} Quekka_producer;
 
-int Quekka_producer_init();
+int Quekka_producer_init(Quekka_config config);
 
 /**
  *

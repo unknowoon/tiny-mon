@@ -31,7 +31,10 @@ int Quekka_producer_pub(const char *topic, const char *payload, size_t size)
 
 int Quekka_producer_pubWithTimeout(const char *topic, const char *payload, size_t size, long timeout)
 {
+    (void)topic;    // unused
+    (void)timeout;  // unused
     send(_producer._fd, payload, size, 0);
+    return 0;
 }
 
 

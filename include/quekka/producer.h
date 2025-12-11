@@ -6,6 +6,7 @@
 #define QUEKKA_PRODUCER_H
 
 #include <stdio.h>
+#include <stdint.h>
 
 #define BUFFER_SIZE 1024
 #define BUFFER_DATA_LEN (BUFFER_SIZE -128 -4 -4)
