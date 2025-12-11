@@ -8,7 +8,7 @@
 #include <stddef.h>
 #include "Quekka_config.h"
 
-typedef struct Quekka_producer {
+typedef struct Quekka_pub {
     int _fd;
 } Quekka_producer;
 

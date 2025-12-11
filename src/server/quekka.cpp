@@ -1,5 +1,5 @@
 #include "quekka/mdb.hpp"
-#include "quekka/libLogger.h"
+#include "quekka/Quekka_log.h"
 #include "internal/comm.h"
 #include "internal/commManager.h"
 

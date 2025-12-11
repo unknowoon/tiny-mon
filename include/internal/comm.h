@@ -11,7 +11,7 @@
 #include <string.h>
 #include <errno.h>
 
-#include "quekka/libLogger.h"
+#include "quekka/Quekka_log.h"
 
 #define BUFFER_SIZE 1024
 #define MAX_CLIENTS 10

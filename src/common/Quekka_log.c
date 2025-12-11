@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <locale.h>
 
-#include "quekka/libLogger.h"
+#include "quekka/Quekka_log.h"
 
 // C99 지정 초기화자 (Designated Initializers)
 Logger g_logger = {

@@ -37,8 +37,8 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 # Common Library (공통 라이브러리)
 # =============================================================================
 add_library(quekka_common STATIC
-    src/common/libLogger.c
-    include/quekka/libLogger.h
+        src/common/Quekka_log.c
+        include/quekka/Quekka_log.h
 )
 
 target_link_libraries(quekka_common PUBLIC
@@ -100,47 +100,17 @@ target_link_libraries(quekka_server_lib PUBLIC
 # 또는 직접 링크:
 #   gcc my_app.c -I/path/to/quekka/include -L/path/to/quekka/lib -lquekka_producer
 # =============================================================================
-add_library(quekka_producer STATIC
-    src/producer/producer.c
-    include/quekka/producer.h
-)
-
-target_include_directories(quekka_producer PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>
-)
-
-target_link_libraries(quekka_producer PUBLIC
-    quekka_common
-)
 
 # =============================================================================
 # Main Executable (quekka)
 # =============================================================================
 add_executable(quekka
-    src/server/main.cpp
+        src/server/quekka.cpp
 )
 
 target_link_libraries(quekka PRIVATE
     quekka_server_lib
 )
-
-# =============================================================================
-# Echo Server Example (Linux only - requires epoll)
-# =============================================================================
-if(UNIX AND NOT APPLE)
-    add_executable(example_echo
-        src/server/example_echo.c
-            include/quekka/Quekka_config.cpp
-            include/quekka/Quekka_config.h
-            include/quekka/Quekka_producer.cpp
-            include/quekka/Quekka_producer.h
-    )
-
-    target_link_libraries(example_echo PRIVATE
-        quekka_server_lib
-    )
-endif()
 
 # =============================================================================
 # 설치 규칙
@@ -149,13 +119,7 @@ install(TARGETS quekka
     RUNTIME DESTINATION bin
 )
 
-if(UNIX AND NOT APPLE)
-    install(TARGETS example_echo
-        RUNTIME DESTINATION bin
-    )
-endif()
-
-install(TARGETS quekka_common quekka_server_lib quekka_producer
+install(TARGETS quekka_common quekka_server_lib
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
 )
