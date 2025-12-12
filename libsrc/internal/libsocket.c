@@ -559,10 +559,6 @@ int tcp_socket_set_nonblocking(int fd) {
 // TCP 서버 소켓 생성
 int tcp_socket_create_server(const char *ip, int port, struct sockaddr_in *addr) {
 	int listen_fd;
-	get_socket_fd(&listen_fd);
-	set_sockopt_reuseaddr(listen_fd);
-	bind_socket_address(port, listen_fd);
-	listen_socket(listen_fd);
 
 	// 논블로킹 설정
 	if (tcp_socket_set_nonblocking(listen_fd) == -1) {

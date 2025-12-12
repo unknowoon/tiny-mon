@@ -5,7 +5,7 @@
 #ifndef QUEKKA_QUEKKA_CONFIG_H
 #define QUEKKA_QUEKKA_CONFIG_H
 
-typedef struct _Quekka_config {
+typedef struct Quekka_config {
     char _ip[32];
     char _port[8];
 } Quekka_config;

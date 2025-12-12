@@ -13,7 +13,7 @@ typedef struct Quekka_producer {
     Quekka_config *_config;
 } Quekka_producer;
 
-int Quekka_producer_init(Quekka_config *config);
+int Quekka_producer_init(const Quekka_config *config);
 
 /**
  *

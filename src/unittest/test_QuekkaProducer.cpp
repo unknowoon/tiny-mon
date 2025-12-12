@@ -17,16 +17,16 @@
 using namespace std;
 
 TEST(publisher, usage) {
-    Quekka_producer producer;
-
     string ip = "127.0.0.1";
     string port = "8080";
 
+    // 컨피그 생성
     Quekka_config config;
     Quekka_config_init(&config);
     Quekka_config_set_address(&config, "127.0.0.1:9999");
 
-    Quekka quekka{ip, port};
+    // 프로듀서 생성
+
     int status = quekka.connect();
     if (status == -1) {
         printf ("Can't connect to quekka server\n");
