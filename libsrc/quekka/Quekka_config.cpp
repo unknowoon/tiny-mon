@@ -7,6 +7,7 @@
 
 #include "quekka/Quekka_config.h"
 
+// NOTE: producer 가 싱글턴이야
 // static struct _Quekka_config config;
 
 int Quekka_config_init(Quekka_config *config) {

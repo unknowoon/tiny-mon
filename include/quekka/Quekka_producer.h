@@ -8,11 +8,12 @@
 #include <stddef.h>
 #include "Quekka_config.h"
 
-typedef struct Quekka_pub {
+typedef struct Quekka_producer {
     int _fd;
+    Quekka_config *_config;
 } Quekka_producer;
 
-int Quekka_producer_init(Quekka_config config);
+int Quekka_producer_init(Quekka_config *config);
 
 /**
  *

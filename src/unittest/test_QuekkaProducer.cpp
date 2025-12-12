@@ -24,6 +24,7 @@ TEST(publisher, usage) {
 
     Quekka_config config;
     Quekka_config_init(&config);
+    Quekka_config_set_address(&config, "127.0.0.1:9999");
 
     Quekka quekka{ip, port};
     int status = quekka.connect();

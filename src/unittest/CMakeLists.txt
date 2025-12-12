@@ -30,7 +30,7 @@ set(TEST_FILES
 # Quekka 구현 파일
 set(QUEKKA_SRC
     ${PROJECT}/libsrc/quekka/Quekka_config.cpp
-        test_QuekkaPub.cpp
+        test_QuekkaProducer.cpp
 )
 
 # Linux 전용: epoll 테스트 및 소스 추가
