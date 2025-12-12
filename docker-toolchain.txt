@@ -1,0 +1,83 @@
+⏺ CLion Docker Toolchain 설정 가이드
+
+1. 사전 준비
+
+Docker 이미지에 개발 도구가 설치된 이미지가 필요합니다. 현재 Dockerfile은 멀티스테이지 빌드라서 최종 이미지에 CMake가 없습니다.
+
+개발용 Dockerfile 생성 (Dockerfile.dev):
+
+FROM rockylinux:9
+
+# 개발 도구 설치
+RUN dnf -y update && \
+dnf -y install gcc gcc-c++ cmake make git gdb && \
+dnf clean all
+
+WORKDIR /app
+
+이미지 빌드:
+docker build -f Dockerfile.dev -t quekka-dev:latest .
+
+  ---
+2. CLion 설정 단계
+
+Step 1: Docker 연결 확인
+
+1. Settings/Preferences → Build, Execution, Deployment → Docker
+2. + 클릭하여 Docker 추가
+3. Docker for Mac/Windows 또는 Unix socket 선택
+4. Connection successful 확인
+
+Step 2: Toolchain 추가
+
+1. Settings/Preferences → Build, Execution, Deployment → Toolchains
+2. + 클릭 → Docker 선택
+3. 설정:
+   - Name: Docker-Rocky9 (원하는 이름)
+   - Docker: 연결된 Docker 선택
+   - Image: quekka-dev:latest ← 개발용 이미지 선택
+   - CMake: /usr/bin/cmake (자동 감지 또는 직접 입력)
+   - C Compiler: /usr/bin/gcc
+   - C++ Compiler: /usr/bin/g++
+
+┌─────────────────────────────────────────────────┐
+│ Toolchains                                      │
+├─────────────────────────────────────────────────┤
+│ Name:        [Docker-Rocky9            ]        │
+│ Docker:      [Docker (connected)       ] ▼      │
+│ Image:       [quekka-dev:latest        ] ▼      │
+│ Container Settings: [...]                       │
+│                                                 │
+│ CMake:       /usr/bin/cmake         ✓ Found    │
+│ C Compiler:  /usr/bin/gcc           ✓ Found    │
+│ C++ Compiler:/usr/bin/g++           ✓ Found    │
+│ Debugger:    /usr/bin/gdb           ✓ Found    │
+└─────────────────────────────────────────────────┘
+
+Step 3: CMake Profile 설정
+
+1. Settings/Preferences → Build, Execution, Deployment → CMake
+2. + 클릭하여 새 Profile 추가
+3. 설정:
+   - Name: Debug-Docker
+   - Build type: Debug
+   - Toolchain: Docker-Rocky9 선택
+
+  ---
+3. 흔한 에러와 해결
+
+| 에러                 | 원인             | 해결                           |
+  |--------------------|----------------|------------------------------|
+| CMake not found    | 이미지에 cmake 미설치 | dnf install cmake 포함된 이미지 사용 |
+| Connection refused | Docker 미실행     | Docker Desktop 실행            |
+| Permission denied  | Docker 권한 문제   | Docker Desktop 재시작 또는 권한 설정  |
+
+  ---
+4. 요약 체크리스트
+
+- Docker Desktop 실행 중
+- 개발용 이미지 빌드 (quekka-dev:latest)
+- 이미지에 gcc, g++, cmake, make, gdb 설치됨
+- CLion Docker 연결 성공
+- Toolchain에서 이미지 선택 후 경로 자동 감지 확인
+
