@@ -1,4 +1,613 @@
 //
 // Created by 우지범 on 2025. 12. 12..
 //
+#include "internal/comm.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/epoll.h>
+#include <sys/fcntl.h>
 
+#include "internal/client_manager.h"
+#include "internal/commManager.h"
+#include "internal/epoll_handler.h"
+#include "internal/socket_server.h"
+#include "internal/tcp_socket.h"
+
+int comm_init(const int socket_fd) {
+    if (socket_fd < 0) {
+        log_error("Comm: Invalid socket file descriptor");
+        return -1;
+    }
+
+    log_info("Comm: Initialized with socket fd %d (PID: %d)", socket_fd, getpid());
+    return 0;
+}
+
+int comm_handle_data(int socket_fd) {
+    char buffer[BUFFER_SIZE];
+    ssize_t bytes_received, bytes_sent;
+
+    while (1) {
+        memset(buffer, 0, BUFFER_SIZE);
+
+        bytes_received = read(socket_fd, buffer, BUFFER_SIZE - 1);
+
+        if (bytes_received <= 0) {
+            if (bytes_received == 0) {
+                log_info("Comm: Client disconnected");
+            } else {
+                log_error("Comm: read failed: %s", strerror(errno));
+            }
+            break;
+        }
+
+        buffer[bytes_received] = '\0';
+        log_debug("Comm: Received %ld bytes: %s", bytes_received, buffer);
+
+        if (strncmp(buffer, "quit", 4) == 0) {
+            log_info("Comm: Client requested to quit");
+            break;
+        }
+
+        char response[BUFFER_SIZE];
+        snprintf(response, BUFFER_SIZE, "Echo: %s", buffer);
+
+        bytes_sent = write(socket_fd, response, strlen(response));
+        if (bytes_sent < 0) {
+            log_error("Comm: write failed: %s", strerror(errno));
+            break;
+        }
+
+        log_debug("Comm: Sent %ld bytes: %s", bytes_sent, response);
+    }
+
+    return 0;
+}
+
+void comm_cleanup(int socket_fd) {
+    log_info("Comm: Socket closed");
+    close(socket_fd);
+}
+typedef struct client_node_t {
+    client_info_t info;
+    struct client_node_t *next;
+} client_node_t;
+
+// 클라이언트 매니저 구조체
+struct client_manager_t {
+    client_node_t *clients;
+    int client_count;
+};
+
+// 클라이언트 매니저 생성
+client_manager_t* client_manager_create(void) {
+    client_manager_t *mgr = calloc(1, sizeof(client_manager_t));
+    if (!mgr) return NULL;
+
+    mgr->clients = NULL;
+    mgr->client_count = 0;
+
+    return mgr;
+}
+
+// 클라이언트 매니저 삭제
+void client_manager_destroy(client_manager_t *mgr) {
+    if (!mgr) return;
+
+    // 모든 클라이언트 노드 해제
+    client_node_t *node = mgr->clients;
+    while (node) {
+        client_node_t *next = node->next;
+        free(node);
+        node = next;
+    }
+
+    free(mgr);
+}
+
+// 클라이언트 추가
+client_info_t* client_manager_add(client_manager_t *mgr, int fd, struct sockaddr_in addr) {
+    if (!mgr) return NULL;
+
+    if (mgr->client_count >= CLIENT_MAX_CLIENTS) {
+        return NULL;
+    }
+
+    client_node_t *node = malloc(sizeof(client_node_t));
+    if (!node) return NULL;
+
+    node->info.fd = fd;
+    node->info.addr = addr;
+    node->info.user_data = NULL;
+
+    // 리스트 앞에 추가
+    node->next = mgr->clients;
+    mgr->clients = node;
+    mgr->client_count++;
+
+    return &node->info;
+}
+
+// 클라이언트 찾기
+client_info_t* client_manager_find(client_manager_t *mgr, int fd) {
+    if (!mgr) return NULL;
+
+    client_node_t *node = mgr->clients;
+    while (node) {
+        if (node->info.fd == fd) {
+            return &node->info;
+        }
+        node = node->next;
+    }
+    return NULL;
+}
+
+// 클라이언트 삭제
+void client_manager_remove(client_manager_t *mgr, int fd) {
+    if (!mgr) return;
+
+    client_node_t **pp = &mgr->clients;
+
+    while (*pp) {
+        if ((*pp)->info.fd == fd) {
+            client_node_t *to_delete = *pp;
+            *pp = (*pp)->next;
+            free(to_delete);
+            mgr->client_count--;
+            return;
+        }
+        pp = &(*pp)->next;
+    }
+}
+
+// 클라이언트 수 반환
+int client_manager_count(client_manager_t *mgr) {
+    if (!mgr) return 0;
+    return mgr->client_count;
+}
+int create_server_socket(int port) {
+    int server_fd;
+    struct sockaddr_in address;
+    int opt = 1;
+
+    if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+        const int err = errno;
+        log_error("socket failed: %s", strerror(err));
+        exit(1);
+    }
+
+    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) != 0) {
+        log_error("setsockopt failed: %s", strerror(errno));
+        close(server_fd);
+        exit(1);
+    }
+
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_port = htons(port);
+
+    if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
+        log_error("bind failed: %s", strerror(errno));
+        close(server_fd);
+        exit(1);
+    }
+
+    if (listen(server_fd, BACKLOG) < 0) {
+        log_error("listen failed: %s", strerror(errno));
+        close(server_fd);
+        exit(1);
+    }
+
+    log_info("CommManager: Server listening on port %d", port);
+    return server_fd;
+}
+
+void handle_client_connection(int server_fd) {
+    struct sockaddr_in client_addr;
+    socklen_t client_len = sizeof(client_addr);
+    int client_fd;
+    pid_t pid;
+
+    while (1) {
+        client_fd = accept(server_fd, (struct sockaddr *)&client_addr, &client_len);
+        if (client_fd < 0) {
+            log_error("accept failed: %s", strerror(errno));
+            continue;
+        }
+
+        log_info("CommManager: Client connected from %s:%d",
+               inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
+
+        pid = fork();
+
+        if (pid < 0) {
+            log_error("fork failed: %s", strerror(errno));
+            close(client_fd);
+        } else if (pid == 0) {
+            close(server_fd);
+
+            char fd_str[32];
+            snprintf(fd_str, sizeof(fd_str), "%d", client_fd);
+
+            execl("./comm", "comm", fd_str, NULL);
+            log_error("execl failed");
+            exit(1);
+        } else {
+            close(client_fd);
+            log_info("CommManager: Created child process %d for client", pid);
+        }
+    }
+}
+struct epoll_handler_t {
+    int epoll_fd;
+    struct epoll_event events[EPOLL_MAX_EVENTS];
+};
+
+// epoll 핸들러 생성
+epoll_handler_t* epoll_handler_create(void) {
+    epoll_handler_t *handler = calloc(1, sizeof(epoll_handler_t));
+    if (!handler) return NULL;
+
+    handler->epoll_fd = epoll_create1(0);
+    if (handler->epoll_fd == -1) {
+        perror("epoll_create1");
+        free(handler);
+        return NULL;
+    }
+
+    return handler;
+}
+
+// epoll 핸들러 삭제
+void epoll_handler_destroy(epoll_handler_t *handler) {
+    if (!handler) return;
+
+    if (handler->epoll_fd != -1) {
+        close(handler->epoll_fd);
+    }
+    free(handler);
+}
+
+// fd 추가 (Edge-triggered)
+int epoll_handler_add(epoll_handler_t *handler, int fd, uint32_t events) {
+    if (!handler) return -1;
+
+    struct epoll_event ev;
+    ev.events = events;
+    ev.data.fd = fd;
+
+    if (epoll_ctl(handler->epoll_fd, EPOLL_CTL_ADD, fd, &ev) == -1) {
+        perror("epoll_ctl: add");
+        return -1;
+    }
+    return 0;
+}
+
+// fd 삭제
+int epoll_handler_remove(epoll_handler_t *handler, int fd) {
+    if (!handler) return -1;
+
+    if (epoll_ctl(handler->epoll_fd, EPOLL_CTL_DEL, fd, NULL) == -1) {
+        perror("epoll_ctl: del");
+        return -1;
+    }
+    return 0;
+}
+
+// 이벤트 대기 및 콜백 호출
+int epoll_handler_wait(epoll_handler_t *handler, int timeout_ms,
+                       epoll_event_callback_fn callback, void *user_data) {
+    if (!handler || !callback) return -1;
+
+    const int nfds = epoll_wait(handler->epoll_fd, handler->events,
+                          EPOLL_MAX_EVENTS, timeout_ms);
+
+    if (nfds == -1) {
+        perror("epoll_wait");
+        return -1;
+    }
+
+    for (int i = 0; i < nfds; i++) {
+        callback(handler->events[i].data.fd,
+                 handler->events[i].events,
+                 user_data);
+    }
+
+    return nfds;
+}
+
+// epoll fd 얻기
+int epoll_handler_get_fd(epoll_handler_t *handler) {
+    if (!handler) return -1;
+    return handler->epoll_fd;
+}
+
+// 내부 서버 구조체
+struct socket_server_t {
+	int listen_fd;
+	epoll_handler_t *epoll;
+	client_manager_t *client_mgr;
+	struct sockaddr_in addr;
+	server_callbacks_t callbacks;
+	void *user_data;
+	int running;
+};
+
+// === 이벤트 핸들러들 ===
+
+// 새로운 연결 수락
+static void handle_accept(const socket_server_t *server) {
+	while (1) {
+		struct sockaddr_in client_addr;
+		int client_fd = tcp_socket_accept(server->listen_fd, &client_addr);
+
+		if (client_fd == -1) {
+			if (errno == EAGAIN || errno == EWOULDBLOCK) {
+				break;  // 모든 대기 중인 연결 처리 완료
+			} else {
+				perror("accept");
+				break;
+			}
+		}
+
+		// 논블로킹 설정
+		if (tcp_socket_set_nonblocking(client_fd) == -1) {
+			close(client_fd);
+			continue;
+		}
+
+		// 클라이언트 등록
+		client_info_t *client = client_manager_add(server->client_mgr, client_fd, client_addr);
+		if (!client) {
+			fprintf(stderr, "Too Many Clients\n");
+			close(client_fd);
+			continue;
+		}
+
+		// epoll에 추가
+		if (epoll_handler_add(server->epoll, client_fd, EPOLLIN | EPOLLET) == -1) {
+			client_manager_remove(server->client_mgr, client_fd);
+			close(client_fd);
+			continue;
+		}
+
+		// on_connection 콜백 호출
+		if (server->callbacks.on_connection) {
+			server->callbacks.on_connection(client, server->user_data);
+		}
+	}
+}
+
+// 클라이언트 데이터 수신
+static void handle_client(const socket_server_t *server, const int client_fd) {
+	client_info_t *client = client_manager_find(server->client_mgr, client_fd);
+	if (!client) return;
+
+	char buffer[BUFFER_SIZE];
+
+	while (1) {
+		const ssize_t n = recv(client_fd, buffer, sizeof(buffer), 0);
+
+		if (n > 0) {
+			// 데이터 수신 성공 - on_received 콜백 호출
+			if (server->callbacks.on_received) {
+				server->callbacks.on_received(client, buffer, n, server->user_data);
+			}
+
+		} else if (n == 0) {
+			// 연결 종료
+			if (server->callbacks.on_disconnected) {
+				server->callbacks.on_disconnected(client, server->user_data);
+			}
+
+			epoll_handler_remove(server->epoll, client_fd);
+			close(client_fd);
+			client_manager_remove(server->client_mgr, client_fd);
+			break;
+
+		} else {
+			if (errno == EAGAIN || errno == EWOULDBLOCK) {
+				break;
+			} else {
+				perror("recv");
+				if (server->callbacks.on_disconnected) {
+					server->callbacks.on_disconnected(client, server->user_data);
+				}
+				epoll_handler_remove(server->epoll, client_fd);
+				close(client_fd);
+				client_manager_remove(server->client_mgr, client_fd);
+				break;
+			}
+		}
+	}
+}
+
+// epoll 이벤트 콜백
+static void epoll_event_callback(int fd, uint32_t events, void *user_data) {
+	(void)events;  // 현재 미사용
+	socket_server_t *server = (socket_server_t*)user_data;
+
+	if (fd == server->listen_fd) {
+		handle_accept(server);
+	} else {
+		handle_client(server, fd);
+	}
+}
+
+// === 공개 API 함수들 ===
+
+socket_server_t* socket_server_create(
+		const char *ip,
+		int port,
+		server_callbacks_t *callbacks,
+		void *user_data) {
+	if (!callbacks) {
+		fprintf(stderr, "Callbacks are required\n");
+		return NULL;
+	}
+
+	socket_server_t *server = calloc(1, sizeof(socket_server_t));
+	if (!server) return NULL;
+
+	// TCP 소켓 생성
+	server->listen_fd = tcp_socket_create_server(ip, port, &server->addr);
+	if (server->listen_fd == -1) {
+		free(server);
+		return NULL;
+	}
+
+	// epoll 핸들러 생성
+	server->epoll = epoll_handler_create();
+	if (!server->epoll) {
+		close(server->listen_fd);
+		free(server);
+		return NULL;
+	}
+
+	// 클라이언트 매니저 생성
+	server->client_mgr = client_manager_create();
+	if (!server->client_mgr) {
+		epoll_handler_destroy(server->epoll);
+		close(server->listen_fd);
+		free(server);
+		return NULL;
+	}
+
+	// listen_fd를 epoll에 등록
+	if (epoll_handler_add(server->epoll, server->listen_fd, EPOLLIN | EPOLLET) == -1) {
+		client_manager_destroy(server->client_mgr);
+		epoll_handler_destroy(server->epoll);
+		close(server->listen_fd);
+		free(server);
+		return NULL;
+	}
+
+	server->callbacks = *callbacks;
+	server->user_data = user_data;
+	server->running = 0;
+
+	return server;
+}
+
+int socket_server_start(socket_server_t *server) {
+	if (!server) return -1;
+
+	server->running = 1;
+
+	// on_start 콜백 호출
+	if (server->callbacks.on_start) {
+		server->callbacks.on_start(server->user_data);
+	}
+
+	// 이벤트 루프
+	while (server->running) {
+		int ret = epoll_handler_wait(server->epoll, -1, epoll_event_callback, server);
+		if (ret == -1 && errno != EINTR) {
+			break;
+		}
+	}
+
+	// on_stop 콜백 호출
+	if (server->callbacks.on_stop) {
+		server->callbacks.on_stop(server->user_data);
+	}
+
+	return 0;
+}
+
+void socket_server_stop(socket_server_t *server) {
+	if (!server) return;
+	server->running = 0;
+}
+
+void socket_server_destroy(socket_server_t *server) {
+	if (!server) return;
+
+	if (server->listen_fd != -1) {
+		close(server->listen_fd);
+	}
+
+	if (server->epoll) {
+		epoll_handler_destroy(server->epoll);
+	}
+
+	if (server->client_mgr) {
+		client_manager_destroy(server->client_mgr);
+	}
+
+	free(server);
+}
+
+int socket_server_send(client_info_t *client, const char *data, const size_t len) {
+	if (!client || !data) return -1;
+	return (int) send(client->fd, data, len, 0);
+}
+
+void socket_server_disconnect(client_info_t *client) {
+	if (!client) return;
+	close(client->fd);
+}
+// 논블로킹 모드 설정
+int tcp_socket_set_nonblocking(int fd) {
+	int flags = fcntl(fd, F_GETFL, 0);
+	if (flags == -1) return -1;
+	return fcntl(fd, F_SETFL, flags | O_NONBLOCK);
+}
+
+// TCP 서버 소켓 생성
+int tcp_socket_create_server(const char *ip, int port, struct sockaddr_in *addr) {
+	// 소켓 생성
+	int listen_fd = socket(AF_INET, SOCK_STREAM, 0);
+	if (listen_fd == -1) {
+		perror("socket");
+		return -1;
+	}
+
+	// SO_REUSEADDR 설정
+	int opt = 1;
+	setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+
+	// 주소 설정
+	memset(addr, 0, sizeof(*addr));
+	addr->sin_family = AF_INET;
+	addr->sin_port = htons(port);
+
+	if (strcmp(ip, "0.0.0.0") == 0 || strcmp(ip, "INADDR_ANY") == 0) {
+		addr->sin_addr.s_addr = INADDR_ANY;
+	} else {
+		if (inet_pton(AF_INET, ip, &addr->sin_addr) <= 0) {
+			fprintf(stderr, "Invalid IP address\n");
+			close(listen_fd);
+			return -1;
+		}
+	}
+
+	// 바인드
+	if (bind(listen_fd, (struct sockaddr*)addr, sizeof(*addr)) == -1) {
+		perror("bind");
+		close(listen_fd);
+		return -1;
+	}
+
+	// 리슨
+	if (listen(listen_fd, SOMAXCONN) == -1) {
+		perror("listen");
+		close(listen_fd);
+		return -1;
+	}
+
+	// 논블로킹 설정
+	if (tcp_socket_set_nonblocking(listen_fd) == -1) {
+		perror("set_nonblocking");
+		close(listen_fd);
+		return -1;
+	}
+
+	return listen_fd;
+}
+
+// 클라이언트 연결 수락
+int tcp_socket_accept(int listen_fd, struct sockaddr_in *client_addr) {
+	socklen_t client_len = sizeof(*client_addr);
+	return accept(listen_fd, (struct sockaddr*)client_addr, &client_len);
+}

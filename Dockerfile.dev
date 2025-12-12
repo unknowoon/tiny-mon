@@ -1,0 +1,18 @@
+# CLion Docker Toolchain용 개발 Dockerfile
+FROM rockylinux:9
+
+# 빌드 도구 및 CLion 연동에 필요한 패키지 설치
+RUN dnf -y update && \
+    dnf -y install \
+        gcc gcc-c++ \
+        cmake make \
+        gdb \
+        git \
+        rsync \
+        tar \
+        which \
+    && dnf clean all
+
+WORKDIR /app
+
+CMD ["bash"]

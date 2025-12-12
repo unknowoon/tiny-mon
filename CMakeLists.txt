@@ -34,11 +34,14 @@ find_package(Threads REQUIRED)
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # =============================================================================
-# Common Library (공통 라이브러리)
+# Common Library (공통 라이브러리 - 로깅)
 # =============================================================================
 add_library(quekka_common STATIC
-        libsrc/quekka/Quekka_log.c
-        include/quekka/Quekka_log.h
+    libsrc/quekka/Quekka_log.c
+)
+
+target_include_directories(quekka_common PUBLIC
+    ${CMAKE_SOURCE_DIR}/include
 )
 
 target_link_libraries(quekka_common PUBLIC
@@ -46,87 +49,113 @@ target_link_libraries(quekka_common PUBLIC
 )
 
 # =============================================================================
-# Server Library (서버 라이브러리)
+# Quekka Config Library (설정 라이브러리)
 # =============================================================================
-# Note: epoll_handler, socket_server, example_echo는 Linux 전용 (epoll 사용)
-if(UNIX AND NOT APPLE)
-    # Linux: epoll 사용 가능
-    add_library(quekka_server_lib STATIC
-            libsrc/internal/tcp_socket.c
-            libsrc/internal/epoll_handler.c
-            libsrc/internal/client_manager.c
-            libsrc/internal/socket_server.c
-            libsrc/internal/comm.c
-            libsrc/internal/commManager.c
-        # Public headers
-            include/internal/socket_server.h
-        # Internal headers
-            include/internal/tcp_socket.h
-            include/internal/epoll_handler.h
-            include/internal/client_manager.h
-            include/internal/comm.h
-            include/internal/commManager.h
-    )
-else()
-    # macOS/Other: epoll 없이 기본 기능만
-    add_library(quekka_server_lib STATIC
-            libsrc/internal/tcp_socket.c
-            libsrc/internal/client_manager.c
-            libsrc/internal/comm.c
-            libsrc/internal/commManager.c
-        # Public headers
-            include/internal/socket_server.h
-        # Internal headers
-            include/internal/tcp_socket.h
-            include/internal/client_manager.h
-            include/internal/comm.h
-            include/internal/commManager.h
-    )
-endif()
+add_library(quekka_config STATIC
+    libsrc/quekka/Quekka_config.cpp
+)
 
-target_link_libraries(quekka_server_lib PUBLIC
+target_include_directories(quekka_config PUBLIC
+    ${CMAKE_SOURCE_DIR}/include
+)
+
+target_link_libraries(quekka_config PUBLIC
     quekka_common
 )
 
 # =============================================================================
-# Producer Client Library (프로듀서 클라이언트 라이브러리)
+# Quekka Publisher Library (퍼블리셔 클라이언트 라이브러리)
 # =============================================================================
-# 카프카의 kafka-clients 처럼 사용자가 자신의 프로젝트에서 링크하여 사용
-#
-# 사용법 (외부 프로젝트에서):
-#   find_package(quekka REQUIRED)
-#   target_link_libraries(my_app PRIVATE quekka_producer)
-#
-# 또는 직접 링크:
-#   gcc my_app.c -I/path/to/quekka/include -L/path/to/quekka/lib -lquekka_producer
-# =============================================================================
+add_library(quekka_pub STATIC
+    libsrc/quekka/Quekka_pub.cpp
+)
+
+target_include_directories(quekka_pub PUBLIC
+    ${CMAKE_SOURCE_DIR}/include
+)
+
+target_link_libraries(quekka_pub PUBLIC
+    quekka_common
+    quekka_config
+)
 
 # =============================================================================
-# Main Executable (quekka)
+# Quekka Subscriber Library (서브스크라이버 클라이언트 라이브러리)
 # =============================================================================
-add_executable(quekka
-        src/server/quekka.cpp
+add_library(quekka_sub STATIC
+    libsrc/quekka/Quekka_sub.c
+)
+
+target_include_directories(quekka_sub PUBLIC
+    ${CMAKE_SOURCE_DIR}/include
+)
+
+target_link_libraries(quekka_sub PUBLIC
+    quekka_common
+    quekka_config
+)
+
+# =============================================================================
+# Server Library (서버 라이브러리 - Linux 전용, epoll 사용)
+# =============================================================================
+if(UNIX AND NOT APPLE)
+    add_library(quekka_server_lib STATIC
         libsrc/internal/libsocket.c
-        libsrc/internal/libfile.c
-)
+    )
 
-target_link_libraries(quekka PRIVATE
-    quekka_server_lib
-)
+    target_include_directories(quekka_server_lib PUBLIC
+        ${CMAKE_SOURCE_DIR}/include
+    )
+
+    target_link_libraries(quekka_server_lib PUBLIC
+        quekka_common
+    )
+endif()
+
+# =============================================================================
+# Main Executable (quekka 서버 - Linux 전용, epoll 사용)
+# =============================================================================
+if(UNIX AND NOT APPLE)
+    add_executable(quekka
+        src/server/quekka.cpp
+        libsrc/internal/libfile.c
+        libsrc/internal/libsocket.c
+            include/internal/socket_server.h
+    )
+
+    target_link_libraries(quekka PRIVATE
+        quekka_common
+        quekka_config
+        quekka_pub
+        quekka_sub
+    )
+endif()
 
 # =============================================================================
 # 설치 규칙
 # =============================================================================
-install(TARGETS quekka
-    RUNTIME DESTINATION bin
-)
-
-install(TARGETS quekka_common quekka_server_lib
+install(TARGETS quekka_common quekka_config quekka_pub quekka_sub
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
 )
 
+if(UNIX AND NOT APPLE)
+    install(TARGETS quekka
+        RUNTIME DESTINATION bin
+    )
+
+    install(TARGETS quekka_server_lib
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
+endif()
+
 install(DIRECTORY include/quekka DESTINATION include)
+
+# =============================================================================
+# Unit Tests
+# =============================================================================
+add_subdirectory(src/unittest)
 
 # =============================================================================
 # 빌드 정보 출력
@@ -139,6 +168,10 @@ message(STATUS "  Build type:        ${CMAKE_BUILD_TYPE}")
 message(STATUS "  C compiler:        ${CMAKE_C_COMPILER}")
 message(STATUS "  CXX compiler:      ${CMAKE_CXX_COMPILER}")
 message(STATUS "  Output directory:  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
+if(UNIX AND NOT APPLE)
+    message(STATUS "  Server build:      Enabled (Linux)")
+else()
+    message(STATUS "  Server build:      Disabled (non-Linux)")
+endif()
 message(STATUS "====================================")
 message(STATUS "")
-add_subdirectory(src/unittest)

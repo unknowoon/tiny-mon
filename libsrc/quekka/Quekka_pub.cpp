@@ -14,12 +14,6 @@ static Quekka_producer _producer;
 
 int Quekka_producer_init(Quekka_config config) {
     memset(&_producer, 0, sizeof(_producer));
-
-    if (config.status)
-        return -1;
-    else {
-        _producer._fd = Quekka_config_get_fd();
-    }
     return 0;
 }
 

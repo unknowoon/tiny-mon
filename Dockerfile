@@ -1,5 +1,5 @@
 # ============================================
-# Stage 1: Build
+# Stage 1: Build (Linux 전용)
 # ============================================
 FROM rockylinux:9 AS builder
 
@@ -14,11 +14,12 @@ WORKDIR /app
 COPY CMakeLists.txt .
 COPY src/ src/
 COPY include/ include/
+COPY libsrc/ libsrc/
 
 # 출력 디렉토리 미리 생성
 RUN mkdir -p bin lib
 
-# 빌드 (quekka 타겟만)
+# 빌드
 RUN mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=Release .. && \
     make quekka -j$(nproc)

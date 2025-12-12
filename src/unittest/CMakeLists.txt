@@ -21,17 +21,24 @@ FetchContent_MakeAvailable(googletest)
 include_directories(${PROJECT}/src)
 include_directories(${PROJECT}/include)
 
+# 공통 테스트 파일
 set(TEST_FILES
-        test_QuekkaMdb.cpp
-        test_QuekkaConfig.cpp
+    test_QuekkaMdb.cpp
+    test_QuekkaConfig.cpp
 )
 
-# Quekka_config 구현 파일
-set(QUEKKA_CONFIG_SRC
-        ${PROJECT}/libsrc/quekka/Quekka_config.cpp
+# Quekka 구현 파일
+set(QUEKKA_SRC
+    ${PROJECT}/libsrc/quekka/Quekka_config.cpp
 )
 
-add_executable(src_unittest test_main.cpp ${TEST_FILES} ${QUEKKA_CONFIG_SRC})
+# Linux 전용: epoll 테스트 및 소스 추가
+if(UNIX AND NOT APPLE)
+    list(APPEND TEST_FILES test_Epoll.cpp)
+    list(APPEND QUEKKA_SRC ${PROJECT}/libsrc/internal/libsocket.c)
+endif()
+
+add_executable(src_unittest test_main.cpp ${TEST_FILES} ${QUEKKA_SRC})
 
 target_include_directories(src_unittest PUBLIC
     ${PROJECT}/include
