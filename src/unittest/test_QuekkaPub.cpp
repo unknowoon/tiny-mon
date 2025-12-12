@@ -10,15 +10,20 @@
 #include <future>
 #include <thread>
 
+#include "quekka/Quekka_producer.h"
+
 // ------------------ 테스트 예시 ------------------
 
 using namespace std;
 
 TEST(publisher, usage) {
-    Publisher publisher;
+    Quekka_producer producer;
 
     string ip = "127.0.0.1";
     string port = "8080";
+
+    Quekka_config config;
+    Quekka_config_init(&config);
 
     Quekka quekka{ip, port};
     int status = quekka.connect();

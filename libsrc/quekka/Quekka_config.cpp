@@ -2,10 +2,10 @@
 // Created by jaeseong on 2025. 12. 10..
 //
 
-#include "../../include/quekka/Quekka_config.h"
-
 #include <cstdio>
 #include <cstring>
+
+#include "quekka/Quekka_config.h"
 
 // static struct _Quekka_config config;
 

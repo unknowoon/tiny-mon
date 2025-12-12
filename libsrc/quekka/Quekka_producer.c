@@ -1,16 +1,17 @@
 //
-// Created by jaeseong on 2025. 12. 10..
+// Created by 우지범 on 2025. 12. 10..
 //
 
-#include "../../include/quekka/Quekka_pub.h"
-#include "../../include/quekka/Quekka_config.h"
-
-#include <cstdlib>
-#include <cstring>
+#include <string.h>
 #include <sys/socket.h>
 
+#include "quekka/Quekka_producer.h"
+#include "quekka/Quekka_config.h"
 
-static Quekka_producer _producer;
+/**
+ * 프로듀서 싱글턴
+ */
+static Quekka_producer *g_producer = NULL;
 
 int Quekka_producer_init(Quekka_config config) {
     memset(&_producer, 0, sizeof(_producer));
