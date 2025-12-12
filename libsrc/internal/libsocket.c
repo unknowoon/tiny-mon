@@ -13,6 +13,110 @@
 #include "internal/socket_server.h"
 #include "internal/tcp_socket.h"
 
+void socket_get_fd(int *server_fd) {
+	if ((*server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+		const int err = errno;
+		log_error("socket failed: %s", strerror(err));
+		exit(1);
+	}
+}
+
+void socket_setsockopt_reuseaddr(int server_fd) {
+	int opt = 1;
+	if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) != 0) {
+		log_error("setsockopt failed: %s", strerror(errno));
+		close(server_fd);
+		exit(1);
+	}
+}
+
+void socket_bind_address(int port, int socket_fd) {
+	struct sockaddr_in address;
+	address.sin_family = AF_INET;
+	address.sin_addr.s_addr = INADDR_ANY;
+	address.sin_port = htons(port);
+
+	if (bind(socket_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
+		log_error("bind failed: %s", strerror(errno));
+		close(socket_fd);
+		exit(1);
+	}
+}
+
+void socket_listen(int socket_fd) {
+	if (listen(socket_fd, SOMAXCONN) < 0) {
+		log_error("listen failed: %s", strerror(errno));
+		close(socket_fd);
+		exit(1);
+	}
+}
+
+void socket_accept(int socket_fd) {
+	struct sockaddr_in address;
+	socklen_t address_length = sizeof(address);
+	int client_fd = accept(socket_fd, (struct sockaddr *)&address, &address_length);
+	if (client_fd < 0) {
+		log_error("accept failed: %s", strerror(errno));
+		close(socket_fd);
+		exit(1);
+	}
+}
+
+void socket_set_server_address(struct sockaddr_in *server_address, const char *server_ip, const int server_port) {
+	memset(&server_address, 0, sizeof(server_address));
+	server_address->sin_family = AF_INET;
+	server_address->sin_port = htons(server_port);
+	inet_pton(AF_INET, server_ip, &server_address->sin_addr);
+}
+
+void socket_connect(struct sockaddr_in *server_address, const int socket_fd) {
+	if (connect(socket_fd, (struct sockaddr *)&server_address, sizeof(server_address) ) < 0) {
+		log_error("connect failed: %s", strerror(errno));
+		close(socket_fd);
+		exit(1);
+	}
+}
+
+void socket_connect_with_clinet(int server_fd) {
+	struct sockaddr_in client_addr;
+	socklen_t client_len = sizeof(client_addr);
+
+	while (1) {
+		const int client_fd = accept(server_fd, (struct sockaddr*) &client_addr, &client_len);
+		if (client_fd < 0) {
+			log_error("accept failed: %s", strerror(errno));
+			continue;
+		}
+
+		// Quekka 서버에서 사용할 예정
+		log_info("Quekka: Client connected from %s:%d",
+			   inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
+
+		pid_t pid = fork();
+
+		// fork 실패 했을 경우
+		if (pid < 0) {
+			log_error("fork failed: %s", strerror(errno));
+			close(client_fd);
+
+			// 본인일 경우
+		} else if (pid == 0) {
+			close(server_fd);
+
+			char fd_str[32];
+			snprintf(fd_str, sizeof(fd_str), "%d", client_fd);
+
+			log_error("execl failed");
+			exit(1);
+
+			// fork 성공 자식프로세스의 경우
+		} else {
+			close(client_fd);
+			log_info("Quekka: Created child process %d for client", pid);
+		}
+	}
+}
+
 int comm_init(const int socket_fd) {
     if (socket_fd < 0) {
         log_error("Comm: Invalid socket file descriptor");
@@ -166,80 +270,6 @@ int client_manager_count(client_manager_t *mgr) {
     return mgr->client_count;
 }
 
-void socket_get_fd(int *server_fd) {
-	if ((*server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-		const int err = errno;
-		log_error("socket failed: %s", strerror(err));
-		exit(1);
-	}
-}
-
-void socket_setsockopt_reuseaddr(int server_fd) {
-	int opt = 1;
-	if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) != 0) {
-		log_error("setsockopt failed: %s", strerror(errno));
-		close(server_fd);
-		exit(1);
-	}
-}
-
-void socket_bind_address(int port, int socket_fd) {
-	struct sockaddr_in address;
-	address.sin_family = AF_INET;
-	address.sin_addr.s_addr = INADDR_ANY;
-	address.sin_port = htons(port);
-
-	if (bind(socket_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
-		log_error("bind failed: %s", strerror(errno));
-		close(socket_fd);
-		exit(1);
-	}
-}
-
-void socket_listen(int socket_fd) {
-	if (listen(socket_fd, SOMAXCONN) < 0) {
-		log_error("listen failed: %s", strerror(errno));
-		close(socket_fd);
-		exit(1);
-	}
-}
-
-void handle_client_connection(int server_fd) {
-    struct sockaddr_in client_addr;
-    socklen_t client_len = sizeof(client_addr);
-    int client_fd;
-    pid_t pid;
-
-    while (1) {
-        client_fd = accept(server_fd, (struct sockaddr *)&client_addr, &client_len);
-        if (client_fd < 0) {
-            log_error("accept failed: %s", strerror(errno));
-            continue;
-        }
-
-        log_info("CommManager: Client connected from %s:%d",
-               inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
-
-        pid = fork();
-
-        if (pid < 0) {
-            log_error("fork failed: %s", strerror(errno));
-            close(client_fd);
-        } else if (pid == 0) {
-            close(server_fd);
-
-            char fd_str[32];
-            snprintf(fd_str, sizeof(fd_str), "%d", client_fd);
-
-            execl("./comm", "comm", fd_str, NULL);
-            log_error("execl failed");
-            exit(1);
-        } else {
-            close(client_fd);
-            log_info("CommManager: Created child process %d for client", pid);
-        }
-    }
-}
 struct epoll_handler_t {
     int epoll_fd;
     struct epoll_event events[EPOLL_MAX_EVENTS];
