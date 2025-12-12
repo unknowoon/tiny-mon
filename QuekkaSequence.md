@@ -27,21 +27,23 @@ Broker-->Broker:데이터 Queue에 저장, index 증가
 end
 destroy Broker
 ```
-## Consumer 최초 접속
+## Consumer 최초 접속 및 데이터 수신
 ```mermaid
 sequenceDiagram
-    autonumber
+autonumber
 Consumer->>Quekka: 최초접속
 Quekka->>Consumer: 접속완료
 Consumer->>Quekka: 관심 Topic 전달
 create participant Broker
-Quekka->>Broker: Consummer정보 전달
+Quekka->>Broker: Consumer정보 전달
 Broker->>Consumer: 연결요청
-opt 
+opt Publisher로부터 데이터수신됨. 
 Broker->>Consumer: 데이터 전송
+end
+opt consumer의 특별한 요청전문
 Consumer->>Broker: index 0~9 요청
 Broker-->Broker:Queue index 조회
-Broker->>Consumer: 데이터 전송
+Broker->>Consumer: 데이터(index 0~9) 전송
 end
 destroy Broker
 ```
