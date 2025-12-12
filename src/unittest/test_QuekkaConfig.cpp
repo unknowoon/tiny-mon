@@ -19,13 +19,15 @@ using namespace std;
 TEST(Quekka_config, usage) {
     Quekka_config config;
 
-    Quekka_config_set_address("127.0.0.1:8080");
+    Quekka_config_init(&config);
+
+    Quekka_config_set_address(&config, "127.0.0.1:8080");
 
     char ip[16];
-    Quekka_config_get_ip(ip);
+    Quekka_config_get_ip(&config, ip);
     EXPECT_STREQ(ip, "127.0.0.1");
 
     char port[16];
-    Quekka_config_get_port(port);
+    Quekka_config_get_port(&config, port);
     EXPECT_STREQ(port, "8080");
 }
