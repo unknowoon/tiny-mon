@@ -165,41 +165,43 @@ int client_manager_count(client_manager_t *mgr) {
     if (!mgr) return 0;
     return mgr->client_count;
 }
-int create_server_socket(int port) {
-    int server_fd;
-    struct sockaddr_in address;
-    int opt = 1;
 
-    if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        const int err = errno;
-        log_error("socket failed: %s", strerror(err));
-        exit(1);
-    }
+void socket_get_fd(int *server_fd) {
+	if ((*server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+		const int err = errno;
+		log_error("socket failed: %s", strerror(err));
+		exit(1);
+	}
+}
 
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) != 0) {
-        log_error("setsockopt failed: %s", strerror(errno));
-        close(server_fd);
-        exit(1);
-    }
+void socket_setsockopt_reuseaddr(int server_fd) {
+	int opt = 1;
+	if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) != 0) {
+		log_error("setsockopt failed: %s", strerror(errno));
+		close(server_fd);
+		exit(1);
+	}
+}
 
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
-    address.sin_port = htons(port);
+void socket_bind_address(int port, int socket_fd) {
+	struct sockaddr_in address;
+	address.sin_family = AF_INET;
+	address.sin_addr.s_addr = INADDR_ANY;
+	address.sin_port = htons(port);
 
-    if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
-        log_error("bind failed: %s", strerror(errno));
-        close(server_fd);
-        exit(1);
-    }
+	if (bind(socket_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
+		log_error("bind failed: %s", strerror(errno));
+		close(socket_fd);
+		exit(1);
+	}
+}
 
-    if (listen(server_fd, BACKLOG) < 0) {
-        log_error("listen failed: %s", strerror(errno));
-        close(server_fd);
-        exit(1);
-    }
-
-    log_info("CommManager: Server listening on port %d", port);
-    return server_fd;
+void socket_listen(int socket_fd) {
+	if (listen(socket_fd, SOMAXCONN) < 0) {
+		log_error("listen failed: %s", strerror(errno));
+		close(socket_fd);
+		exit(1);
+	}
 }
 
 void handle_client_connection(int server_fd) {
@@ -556,45 +558,11 @@ int tcp_socket_set_nonblocking(int fd) {
 
 // TCP 서버 소켓 생성
 int tcp_socket_create_server(const char *ip, int port, struct sockaddr_in *addr) {
-	// 소켓 생성
-	int listen_fd = socket(AF_INET, SOCK_STREAM, 0);
-	if (listen_fd == -1) {
-		perror("socket");
-		return -1;
-	}
-
-	// SO_REUSEADDR 설정
-	int opt = 1;
-	setsockopt(listen_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
-
-	// 주소 설정
-	memset(addr, 0, sizeof(*addr));
-	addr->sin_family = AF_INET;
-	addr->sin_port = htons(port);
-
-	if (strcmp(ip, "0.0.0.0") == 0 || strcmp(ip, "INADDR_ANY") == 0) {
-		addr->sin_addr.s_addr = INADDR_ANY;
-	} else {
-		if (inet_pton(AF_INET, ip, &addr->sin_addr) <= 0) {
-			fprintf(stderr, "Invalid IP address\n");
-			close(listen_fd);
-			return -1;
-		}
-	}
-
-	// 바인드
-	if (bind(listen_fd, (struct sockaddr*)addr, sizeof(*addr)) == -1) {
-		perror("bind");
-		close(listen_fd);
-		return -1;
-	}
-
-	// 리슨
-	if (listen(listen_fd, SOMAXCONN) == -1) {
-		perror("listen");
-		close(listen_fd);
-		return -1;
-	}
+	int listen_fd;
+	get_socket_fd(&listen_fd);
+	set_sockopt_reuseaddr(listen_fd);
+	bind_socket_address(port, listen_fd);
+	listen_socket(listen_fd);
 
 	// 논블로킹 설정
 	if (tcp_socket_set_nonblocking(listen_fd) == -1) {
