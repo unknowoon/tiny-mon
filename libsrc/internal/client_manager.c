@@ -2,6 +2,7 @@
 
 #include "internal/client_manager.h"
 
+
 // 내부 클라이언트 노드 구조체
 typedef struct client_node_t {
 	client_info_t info;
