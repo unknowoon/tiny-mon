@@ -52,12 +52,12 @@ target_link_libraries(quekka_common PUBLIC
 if(UNIX AND NOT APPLE)
     # Linux: epoll 사용 가능
     add_library(quekka_server_lib STATIC
-            libsrc/core/tcp_socket.c
-            libsrc/core/epoll_handler.c
-            libsrc/core/client_manager.c
-            libsrc/core/socket_server.c
-            libsrc/core/comm.c
-            libsrc/core/commManager.c
+            libsrc/internal/tcp_socket.c
+            libsrc/internal/epoll_handler.c
+            libsrc/internal/client_manager.c
+            libsrc/internal/socket_server.c
+            libsrc/internal/comm.c
+            libsrc/internal/commManager.c
         # Public headers
             include/core/socket_server.h
         # Internal headers
@@ -70,10 +70,10 @@ if(UNIX AND NOT APPLE)
 else()
     # macOS/Other: epoll 없이 기본 기능만
     add_library(quekka_server_lib STATIC
-            libsrc/core/tcp_socket.c
-            libsrc/core/client_manager.c
-            libsrc/core/comm.c
-            libsrc/core/commManager.c
+            libsrc/internal/tcp_socket.c
+            libsrc/internal/client_manager.c
+            libsrc/internal/comm.c
+            libsrc/internal/commManager.c
         # Public headers
             include/core/socket_server.h
         # Internal headers
@@ -106,8 +106,8 @@ target_link_libraries(quekka_server_lib PUBLIC
 # =============================================================================
 add_executable(quekka
         src/server/quekka.cpp
-        libsrc/core/libsocket.c
-        libsrc/core/libfile.c
+        libsrc/internal/libsocket.c
+        libsrc/internal/libfile.c
 )
 
 target_link_libraries(quekka PRIVATE
