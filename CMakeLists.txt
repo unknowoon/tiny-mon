@@ -37,7 +37,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 # Common Library (공통 라이브러리)
 # =============================================================================
 add_library(quekka_common STATIC
-        src/common/Quekka_log.c
+        libsrc/quekka/Quekka_log.c
         include/quekka/Quekka_log.h
 )
 
@@ -52,35 +52,35 @@ target_link_libraries(quekka_common PUBLIC
 if(UNIX AND NOT APPLE)
     # Linux: epoll 사용 가능
     add_library(quekka_server_lib STATIC
-        src/server/tcp_socket.c
-        src/server/epoll_handler.c
-        src/server/client_manager.c
-        src/server/socket_server.c
-        src/server/comm.c
-        src/server/commManager.c
+            libsrc/core/tcp_socket.c
+            libsrc/core/epoll_handler.c
+            libsrc/core/client_manager.c
+            libsrc/core/socket_server.c
+            libsrc/core/comm.c
+            libsrc/core/commManager.c
         # Public headers
-        include/quekka/socket_server.h
+            include/core/socket_server.h
         # Internal headers
-        include/internal/tcp_socket.h
-        include/internal/epoll_handler.h
-        include/internal/client_manager.h
-        include/internal/comm.h
-        include/internal/commManager.h
+            include/core/tcp_socket.h
+            include/core/epoll_handler.h
+            include/core/client_manager.h
+            include/core/comm.h
+            include/core/commManager.h
     )
 else()
     # macOS/Other: epoll 없이 기본 기능만
     add_library(quekka_server_lib STATIC
-        src/server/tcp_socket.c
-        src/server/client_manager.c
-        src/server/comm.c
-        src/server/commManager.c
+            libsrc/core/tcp_socket.c
+            libsrc/core/client_manager.c
+            libsrc/core/comm.c
+            libsrc/core/commManager.c
         # Public headers
-        include/quekka/socket_server.h
+            include/core/socket_server.h
         # Internal headers
-        include/internal/tcp_socket.h
-        include/internal/client_manager.h
-        include/internal/comm.h
-        include/internal/commManager.h
+            include/core/tcp_socket.h
+            include/core/client_manager.h
+            include/core/comm.h
+            include/core/commManager.h
     )
 endif()
 
@@ -106,6 +106,8 @@ target_link_libraries(quekka_server_lib PUBLIC
 # =============================================================================
 add_executable(quekka
         src/server/quekka.cpp
+        libsrc/core/libsocket.c
+        libsrc/core/libfile.c
 )
 
 target_link_libraries(quekka PRIVATE
@@ -139,3 +141,4 @@ message(STATUS "  CXX compiler:      ${CMAKE_CXX_COMPILER}")
 message(STATUS "  Output directory:  ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 message(STATUS "====================================")
 message(STATUS "")
+add_subdirectory(src/unittest)

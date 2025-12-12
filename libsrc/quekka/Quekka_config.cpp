@@ -2,7 +2,7 @@
 // Created by jaeseong on 2025. 12. 10..
 //
 
-#include "Quekka_config.h"
+#include "../../include/quekka/Quekka_config.h"
 
 #include <cstdio>
 #include <cstring>

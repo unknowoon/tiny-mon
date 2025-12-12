@@ -10,7 +10,7 @@
 #include <future>
 #include <thread>
 
-#include "mdb.hpp"
+#include "quekka/Quekka_mdb.hpp"
 
 // ------------------ 테스트 예시 ------------------
 
@@ -22,7 +22,7 @@ TEST(cache_db, usage) {
     using Key2 = primarykey<std::string>;
     using Columns2 = columns<Key2, double, double>;
 
-    mdb db;
+    Quekka_mdb db;
 
     // CRUD가 행위가 이루어지면, cb1 콜백함수가 처리 됩니다.
     auto callback = [](const Key1 &key,

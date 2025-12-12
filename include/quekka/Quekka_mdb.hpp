@@ -188,9 +188,9 @@ private:
 };
 
 
-class mdb {
+class Quekka_mdb {
 public:
-    mdb() = default;
+    Quekka_mdb() = default;
 
     template<typename RecordType>
     table<RecordType> &getTable(
