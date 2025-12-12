@@ -1,4 +1,4 @@
-#include "core/comm.h"
+#include "internal/comm.h"
 #include <stdlib.h>
 #include <stdio.h>
 

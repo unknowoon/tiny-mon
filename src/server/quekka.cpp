@@ -1,7 +1,7 @@
 #include "quekka/Quekka_mdb.hpp"
 #include "quekka/Quekka_log.h"
-#include "core/comm.h"
-#include "core/commManager.h"
+#include "internal/comm.h"
+#include "internal/commManager.h"
 
 
 static int processArgs(int argc, char **argv);

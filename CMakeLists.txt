@@ -59,13 +59,13 @@ if(UNIX AND NOT APPLE)
             libsrc/internal/comm.c
             libsrc/internal/commManager.c
         # Public headers
-            include/core/socket_server.h
+            include/internal/socket_server.h
         # Internal headers
-            include/core/tcp_socket.h
-            include/core/epoll_handler.h
-            include/core/client_manager.h
-            include/core/comm.h
-            include/core/commManager.h
+            include/internal/tcp_socket.h
+            include/internal/epoll_handler.h
+            include/internal/client_manager.h
+            include/internal/comm.h
+            include/internal/commManager.h
     )
 else()
     # macOS/Other: epoll 없이 기본 기능만
@@ -75,12 +75,12 @@ else()
             libsrc/internal/comm.c
             libsrc/internal/commManager.c
         # Public headers
-            include/core/socket_server.h
+            include/internal/socket_server.h
         # Internal headers
-            include/core/tcp_socket.h
-            include/core/client_manager.h
-            include/core/comm.h
-            include/core/commManager.h
+            include/internal/tcp_socket.h
+            include/internal/client_manager.h
+            include/internal/comm.h
+            include/internal/commManager.h
     )
 endif()
 
