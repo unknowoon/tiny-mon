@@ -67,7 +67,7 @@ target_link_libraries(quekka_config PUBLIC
 # Quekka Publisher Library (퍼블리셔 클라이언트 라이브러리)
 # =============================================================================
 add_library(quekka_pub STATIC
-    libsrc/quekka/Quekka_pub.cpp
+        libsrc/quekka/Quekka_producer.c
 )
 
 target_include_directories(quekka_pub PUBLIC

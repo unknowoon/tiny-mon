@@ -5,7 +5,7 @@ FROM rockylinux:9 AS builder
 
 # 빌드 도구 설치
 RUN dnf -y update && \
-    dnf -y install gcc gcc-c++ cmake make && \
+    dnf -y install gcc gcc-c++ cmake make git && \
     dnf clean all
 
 WORKDIR /app
