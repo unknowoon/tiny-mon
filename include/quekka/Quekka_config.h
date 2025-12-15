@@ -4,10 +4,12 @@
 
 #ifndef QUEKKA_QUEKKA_CONFIG_H
 #define QUEKKA_QUEKKA_CONFIG_H
+#include <cstdint>
+#include <netinet/in.h>
 
 typedef struct Quekka_config {
-    char _ip[32];
-    char _port[8];
+    char _ip[INET_ADDRSTRLEN];
+    uint16_t _port;
 } Quekka_config;
 
 /**

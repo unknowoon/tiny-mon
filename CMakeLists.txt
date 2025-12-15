@@ -121,6 +121,8 @@ if(UNIX AND NOT APPLE)
         libsrc/internal/libfile.c
         libsrc/internal/libsocket.c
             include/internal/socket_server.h
+            include/internal/libsocket.h
+            libsrc/internal/libsocket.c
     )
 
     target_link_libraries(quekka PRIVATE

@@ -7,8 +7,8 @@
 
 #include "quekka/Quekka_config.h"
 
-// NOTE: producer 가 싱글턴이야
-// static struct _Quekka_config config;
+#include <cstdlib>
+#include <netinet/in.h>
 
 int Quekka_config_init(Quekka_config *config) {
     memset(config, 0, sizeof(Quekka_config));
@@ -16,7 +16,11 @@ int Quekka_config_init(Quekka_config *config) {
 }
 
 int Quekka_config_set_address(Quekka_config *config, const char *address) {
-    int ret = sscanf(address, "%[^:]:%s", config->_ip, config->_port);
+    char *ip = nullptr;
+    char *port = nullptr;
+    int ret = sscanf(address, "%[^:]:%s", ip, port);
+    memcpy(config->_ip, ip, strlen(ip));
+    config->_port = ntohs(atoi(port));
     if (ret != 2)
         return -1;
     return 0;
@@ -29,8 +33,7 @@ int Quekka_config_set_ip(Quekka_config *config, const char *ip) {
 }
 
 int Quekka_config_set_port(Quekka_config *config, const char *port) {
-    memset(config->_port, 0x00, sizeof(config->_port));
-    strncpy(config->_port, port, sizeof(config->_port));
+    config->_port = htons(atoi(port));
     return 0;
 }
 
@@ -42,10 +45,6 @@ int Quekka_config_get_ip(const Quekka_config *config, char *ip) {
     return -1;
 }
 
-int Quekka_config_get_port(const Quekka_config *config, char *port) {
-    if (strlen(config->_port) > 0) {
-        memcpy(port, config->_port, sizeof(config->_port));
-        return 0;
-    }
-    return -1;
+uint16_t Quekka_config_get_port(const Quekka_config *config) {
+    return config->_port;
 }

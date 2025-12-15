@@ -26,6 +26,9 @@ TEST(publisher, usage) {
     Quekka_config_set_address(&config, "127.0.0.1:9999");
 
     // 프로듀서 생성
+    Quekka_producer *g_producer = Quekka_producer_init(&config);
+
+    g_producer->Quekka_publish();
 
     int status = quekka.connect();
     if (status == -1) {

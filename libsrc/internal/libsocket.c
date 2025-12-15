@@ -7,22 +7,25 @@
 #include <sys/epoll.h>
 #include <sys/fcntl.h>
 
+#include "internal/libsocket.h"
 #include "internal/client_manager.h"
 #include "internal/commManager.h"
 #include "internal/epoll_handler.h"
 #include "internal/socket_server.h"
 #include "internal/tcp_socket.h"
 
-void socket_get_fd(int *server_fd) {
-	if ((*server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+int socket_init(void) {
+	int server_fd = 0;
+	if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
 		const int err = errno;
 		log_error("socket failed: %s", strerror(err));
-		exit(1);
+		return -1;
 	}
+	return server_fd;
 }
 
-void socket_setsockopt_reuseaddr(int server_fd) {
-	int opt = 1;
+void socket_setsockopt_reuseaddr(const int server_fd) {
+	const int opt = 1;
 	if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) != 0) {
 		log_error("setsockopt failed: %s", strerror(errno));
 		close(server_fd);
@@ -30,7 +33,7 @@ void socket_setsockopt_reuseaddr(int server_fd) {
 	}
 }
 
-void socket_bind_address(int port, int socket_fd) {
+void socket_bind_address(const int port, const int socket_fd) {
 	struct sockaddr_in address;
 	address.sin_family = AF_INET;
 	address.sin_addr.s_addr = INADDR_ANY;
@@ -43,7 +46,7 @@ void socket_bind_address(int port, int socket_fd) {
 	}
 }
 
-void socket_listen(int socket_fd) {
+void socket_listen(const int socket_fd) {
 	if (listen(socket_fd, SOMAXCONN) < 0) {
 		log_error("listen failed: %s", strerror(errno));
 		close(socket_fd);
@@ -51,10 +54,10 @@ void socket_listen(int socket_fd) {
 	}
 }
 
-void socket_accept(int socket_fd) {
+void socket_accept(const int socket_fd) {
 	struct sockaddr_in address;
 	socklen_t address_length = sizeof(address);
-	int client_fd = accept(socket_fd, (struct sockaddr *)&address, &address_length);
+	const int client_fd = accept(socket_fd, (struct sockaddr *)&address, &address_length);
 	if (client_fd < 0) {
 		log_error("accept failed: %s", strerror(errno));
 		close(socket_fd);
@@ -77,7 +80,7 @@ void socket_connect(struct sockaddr_in *server_address, const int socket_fd) {
 	}
 }
 
-void socket_connect_with_clinet(int server_fd) {
+void socket_connect_with_client(const int server_fd) {
 	struct sockaddr_in client_addr;
 	socklen_t client_len = sizeof(client_addr);
 
@@ -168,7 +171,7 @@ int comm_handle_data(int socket_fd) {
     return 0;
 }
 
-void comm_cleanup(int socket_fd) {
+void comm_cleanup(const int socket_fd) {
     log_info("Comm: Socket closed");
     close(socket_fd);
 }
@@ -210,7 +213,7 @@ void client_manager_destroy(client_manager_t *mgr) {
 }
 
 // 클라이언트 추가
-client_info_t* client_manager_add(client_manager_t *mgr, int fd, struct sockaddr_in addr) {
+client_info_t* client_manager_add(client_manager_t *mgr, const int fd, const struct sockaddr_in addr) {
     if (!mgr) return NULL;
 
     if (mgr->client_count >= CLIENT_MAX_CLIENTS) {
@@ -233,7 +236,7 @@ client_info_t* client_manager_add(client_manager_t *mgr, int fd, struct sockaddr
 }
 
 // 클라이언트 찾기
-client_info_t* client_manager_find(client_manager_t *mgr, int fd) {
+client_info_t* client_manager_find(client_manager_t *mgr, const int fd) {
     if (!mgr) return NULL;
 
     client_node_t *node = mgr->clients;
@@ -247,7 +250,7 @@ client_info_t* client_manager_find(client_manager_t *mgr, int fd) {
 }
 
 // 클라이언트 삭제
-void client_manager_remove(client_manager_t *mgr, int fd) {
+void client_manager_remove(client_manager_t *mgr, const int fd) {
     if (!mgr) return;
 
     client_node_t **pp = &mgr->clients;
@@ -301,7 +304,7 @@ void epoll_handler_destroy(epoll_handler_t *handler) {
 }
 
 // fd 추가 (Edge-triggered)
-int epoll_handler_add(epoll_handler_t *handler, int fd, uint32_t events) {
+int epoll_handler_add(epoll_handler_t *handler, const int fd, const uint32_t events) {
     if (!handler) return -1;
 
     struct epoll_event ev;
@@ -316,7 +319,7 @@ int epoll_handler_add(epoll_handler_t *handler, int fd, uint32_t events) {
 }
 
 // fd 삭제
-int epoll_handler_remove(epoll_handler_t *handler, int fd) {
+int epoll_handler_remove(epoll_handler_t *handler, const int fd) {
     if (!handler) return -1;
 
     if (epoll_ctl(handler->epoll_fd, EPOLL_CTL_DEL, fd, NULL) == -1) {
@@ -327,8 +330,8 @@ int epoll_handler_remove(epoll_handler_t *handler, int fd) {
 }
 
 // 이벤트 대기 및 콜백 호출
-int epoll_handler_wait(epoll_handler_t *handler, int timeout_ms,
-                       epoll_event_callback_fn callback, void *user_data) {
+int epoll_handler_wait(epoll_handler_t *handler, const int timeout_ms,
+                       const epoll_event_callback_fn callback, void *user_data) {
     if (!handler || !callback) return -1;
 
     const int nfds = epoll_wait(handler->epoll_fd, handler->events,
@@ -371,7 +374,7 @@ struct socket_server_t {
 static void handle_accept(const socket_server_t *server) {
 	while (1) {
 		struct sockaddr_in client_addr;
-		int client_fd = tcp_socket_accept(server->listen_fd, &client_addr);
+		const int client_fd = tcp_socket_accept(server->listen_fd, &client_addr);
 
 		if (client_fd == -1) {
 			if (errno == EAGAIN || errno == EWOULDBLOCK) {
@@ -580,24 +583,10 @@ void socket_server_disconnect(client_info_t *client) {
 	close(client->fd);
 }
 // 논블로킹 모드 설정
-int tcp_socket_set_nonblocking(int fd) {
-	int flags = fcntl(fd, F_GETFL, 0);
+int tcp_socket_set_nonblocking(const int fd) {
+	const int flags = fcntl(fd, F_GETFL, 0);
 	if (flags == -1) return -1;
 	return fcntl(fd, F_SETFL, flags | O_NONBLOCK);
-}
-
-// TCP 서버 소켓 생성
-int tcp_socket_create_server(const char *ip, int port, struct sockaddr_in *addr) {
-	int listen_fd;
-
-	// 논블로킹 설정
-	if (tcp_socket_set_nonblocking(listen_fd) == -1) {
-		perror("set_nonblocking");
-		close(listen_fd);
-		return -1;
-	}
-
-	return listen_fd;
 }
 
 // 클라이언트 연결 수락
