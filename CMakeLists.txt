@@ -123,6 +123,8 @@ if(UNIX AND NOT APPLE)
             include/internal/socket_server.h
             include/internal/libsocket.h
             libsrc/internal/libsocket.c
+            libsrc/quekka/Quekka_quecode.h
+            libsrc/quekka/Quekka_quecode.c
     )
 
     target_link_libraries(quekka PRIVATE
