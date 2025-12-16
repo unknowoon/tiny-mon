@@ -64,19 +64,34 @@ target_link_libraries(quekka_config PUBLIC
 )
 
 # =============================================================================
+# Quekka Error Code Library (에러 코드 라이브러리)
+# =============================================================================
+add_library(quekka_error STATIC
+    libsrc/quekka/Quekka_quecode.c
+)
+
+target_include_directories(quekka_error PUBLIC
+    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/libsrc/quekka
+)
+
+# =============================================================================
 # Quekka Publisher Library (퍼블리셔 클라이언트 라이브러리)
 # =============================================================================
 add_library(quekka_pub STATIC
-        libsrc/quekka/Quekka_producer.c
+    libsrc/quekka/Quekka_producer.c
+    libsrc/internal/libsocket.c
 )
 
 target_include_directories(quekka_pub PUBLIC
     ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/libsrc/quekka
 )
 
 target_link_libraries(quekka_pub PUBLIC
     quekka_common
     quekka_config
+    quekka_error
 )
 
 # =============================================================================
@@ -138,7 +153,7 @@ endif()
 # =============================================================================
 # 설치 규칙
 # =============================================================================
-install(TARGETS quekka_common quekka_config quekka_pub quekka_sub
+install(TARGETS quekka_common quekka_config quekka_error quekka_pub quekka_sub
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
 )

@@ -1,7 +1,7 @@
 #include "quekka/Quekka_mdb.hpp"
 #include "quekka/Quekka_log.h"
 #include "internal/comm.h"
-#include "internal/commManager.h"
+#include "internal/libsocket.h"
 
 
 static int processArgs(int argc, char **argv);
@@ -22,13 +22,17 @@ int main (int argc, char *argv[]) {
 
     int port = 9999;
 
-    int server_fd = create_server_socket(port);
+    // 서버 소켓 생성 및 설정
+    int server_fd = socket_init();
     if (server_fd < 0) {
         exit(1);
     }
+    socket_setsockopt_reuseaddr(server_fd);
+    socket_bind_address(port, server_fd);
+    socket_listen(server_fd);
 
     log_info("CommManager: Starting server on port %d", port);
-    handle_client_connection(server_fd);
+    socket_connect_with_client(server_fd);
 
     close(server_fd);
     log_info("CommManager: Shutting down");

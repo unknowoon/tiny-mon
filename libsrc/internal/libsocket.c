@@ -9,10 +9,8 @@
 
 #include "internal/libsocket.h"
 #include "internal/client_manager.h"
-#include "internal/commManager.h"
 #include "internal/epoll_handler.h"
 #include "internal/socket_server.h"
-#include "internal/tcp_socket.h"
 
 int socket_init(void) {
 	int server_fd = 0;
@@ -156,8 +154,8 @@ int comm_handle_data(int socket_fd) {
             break;
         }
 
-        char response[BUFFER_SIZE];
-        snprintf(response, BUFFER_SIZE, "Echo: %s", buffer);
+        char response[BUFFER_SIZE + 8];
+        snprintf(response, sizeof(response), "Echo: %s", buffer);
 
         bytes_sent = write(socket_fd, response, strlen(response));
         if (bytes_sent < 0) {
@@ -485,11 +483,32 @@ socket_server_t* socket_server_create(
 	if (!server) return NULL;
 
 	// TCP 소켓 생성
-	server->listen_fd = tcp_socket_create_server(ip, port, &server->addr);
-	if (server->listen_fd == -1) {
+	server->listen_fd = socket_init();
+	if (server->listen_fd < 0) {
 		free(server);
 		return NULL;
 	}
+
+	// 소켓 옵션 및 바인드
+	socket_setsockopt_reuseaddr(server->listen_fd);
+
+	// 주소 설정
+	server->addr.sin_family = AF_INET;
+	server->addr.sin_port = htons(port);
+	if (ip) {
+		inet_pton(AF_INET, ip, &server->addr.sin_addr);
+	} else {
+		server->addr.sin_addr.s_addr = INADDR_ANY;
+	}
+
+	if (bind(server->listen_fd, (struct sockaddr *)&server->addr, sizeof(server->addr)) < 0) {
+		log_error("bind failed: %s", strerror(errno));
+		close(server->listen_fd);
+		free(server);
+		return NULL;
+	}
+
+	socket_listen(server->listen_fd);
 
 	// epoll 핸들러 생성
 	server->epoll = epoll_handler_create();
