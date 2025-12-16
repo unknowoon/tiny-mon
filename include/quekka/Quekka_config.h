@@ -4,7 +4,6 @@
 
 #ifndef QUEKKA_QUEKKA_CONFIG_H
 #define QUEKKA_QUEKKA_CONFIG_H
-#include <cstdint>
 #include <netinet/in.h>
 
 typedef struct Quekka_config {

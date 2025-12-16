@@ -28,12 +28,9 @@ TEST(publisher, usage) {
     // 프로듀서 생성
     Quekka_producer *g_producer = Quekka_producer_init(&config);
 
-    g_producer->Quekka_publish();
+    const char *payload = "hello world";
 
-    int status = quekka.connect();
-    if (status == -1) {
-        printf ("Can't connect to quekka server\n");
-    }
+    g_producer->Quekka_publish("hello quekka", payload, strlen(payload));
 
     string topic = "hello";
     int CanConn? = publisher.greet (quekka, topic);

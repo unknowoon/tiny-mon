@@ -13,6 +13,11 @@
 #define QUEKKA_MSG_ID_MAX     (17 + 1)    // yyyymmddhhMMsssss + null
 #define QUEKKA_HEADER_SIZE    153         // 128 + 18 + 2 + 2 + 2 + 1
 #define QUEKKA_PAYLOAD_MAX    (QUEKKA_MSG_SIZE - QUEKKA_HEADER_SIZE)  // 3943
+#define QUEKKA_MSG_ID_FORMAT  "%Y%m%d%H%M%S"
+
+// 메시지 분할 플래그
+#define QUEKKA_FLAG_MORE      0x00  // 후속 조각 있음
+#define QUEKKA_FLAG_LAST      0x01  // 마지막 조각
 
 typedef struct Quekka_producer {
     int _fd;
@@ -31,13 +36,16 @@ typedef struct Quekka_header {
 } Quekka_header;
 
 typedef struct Quekka_message {
-    Quekka_header header;
+    Quekka_header *header;
     char payload[QUEKKA_PAYLOAD_MAX];
 } Quekka_message;
 #pragma pack(pop)
 
-_Static_assert(sizeof(Quekka_message) == QUEKKA_MSG_SIZE, "Quekka_message must be 4096 bytes");
-
+/**
+ *
+ * @param config
+ * @return
+ */
 Quekka_producer *Quekka_producer_init(const Quekka_config *config);
 
 /**
@@ -51,12 +59,19 @@ static int Quekka_publish(const char *topic, const char *payload, size_t size);
 
 /**
  *
+ * @param header
  * @param topic
- * @param payload
- * @param size
- * @param timeout
- * @return
  */
-int Quekka_producer_pubWithTimeout(const char *topic, const char *payload, size_t size, long timeout);
+static void header_assemble(Quekka_header *header, const char *topic);
+
+/**
+ *
+ * @param header
+ * @param message
+ * @param payload
+ * @param seq
+ * @param flag
+ */
+static void message_assemble(Quekka_header *header, Quekka_message *message, const char *payload, uint16_t seq, uint8_t flag);
 
 #endif //QUEKKA_QUEKKA_PRODUCER_H
