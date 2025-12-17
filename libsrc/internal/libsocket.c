@@ -608,6 +608,34 @@ int tcp_socket_set_nonblocking(const int fd) {
 	return fcntl(fd, F_SETFL, flags | O_NONBLOCK);
 }
 
+// TCP 서버 소켓 생성
+int tcp_socket_create_server(const char *ip, int port, struct sockaddr_in *addr) {
+	int fd = socket_init();
+	if (fd < 0) return -1;
+
+	socket_setsockopt_reuseaddr(fd);
+
+	addr->sin_family = AF_INET;
+	addr->sin_port = htons(port);
+	if (ip) {
+		inet_pton(AF_INET, ip, &addr->sin_addr);
+	} else {
+		addr->sin_addr.s_addr = INADDR_ANY;
+	}
+
+	if (bind(fd, (struct sockaddr *)addr, sizeof(*addr)) < 0) {
+		close(fd);
+		return -1;
+	}
+
+	if (listen(fd, SOMAXCONN) < 0) {
+		close(fd);
+		return -1;
+	}
+
+	return fd;
+}
+
 // 클라이언트 연결 수락
 int tcp_socket_accept(int listen_fd, struct sockaddr_in *client_addr) {
 	socklen_t client_len = sizeof(*client_addr);

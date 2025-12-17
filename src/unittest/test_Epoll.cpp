@@ -17,7 +17,7 @@
 extern "C" {
 #include "internal/epoll_handler.h"
 #include "internal/client_manager.h"
-#include "internal/tcp_socket.h"
+#include "internal/libsocket.h"
 }
 
 // =============================================================================

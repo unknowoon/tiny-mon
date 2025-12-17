@@ -23,6 +23,7 @@ void socket_connect_with_client(int server_fd);
 
 // TCP 소켓 유틸
 int tcp_socket_set_nonblocking(int fd);
+int tcp_socket_create_server(const char *ip, int port, struct sockaddr_in *addr);
 int tcp_socket_accept(int listen_fd, struct sockaddr_in *client_addr);
 
 // 클라이언트용
