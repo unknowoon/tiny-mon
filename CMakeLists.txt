@@ -52,7 +52,7 @@ target_link_libraries(quekka_common PUBLIC
 # Quekka Config Library (설정 라이브러리)
 # =============================================================================
 add_library(quekka_config STATIC
-    libsrc/quekka/Quekka_config.cpp
+        libsrc/quekka/Quekka_config.c
 )
 
 target_include_directories(quekka_config PUBLIC
@@ -138,8 +138,9 @@ if(UNIX AND NOT APPLE)
             include/internal/socket_server.h
             include/internal/libsocket.h
             libsrc/internal/libsocket.c
-            libsrc/quekka/Quekka_quecode.h
+            include/quekka/Quekka_quecode.h
             libsrc/quekka/Quekka_quecode.c
+            libsrc/quekka/Quekka_config.c
     )
 
     target_link_libraries(quekka PRIVATE

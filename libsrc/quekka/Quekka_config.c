@@ -2,12 +2,12 @@
 // Created by jaeseong on 2025. 12. 10..
 //
 
-#include <cstdio>
-#include <cstring>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "quekka/Quekka_config.h"
 
-#include <cstdlib>
 #include <netinet/in.h>
 
 int Quekka_config_init(Quekka_config *config) {
@@ -16,8 +16,8 @@ int Quekka_config_init(Quekka_config *config) {
 }
 
 int Quekka_config_set_address(Quekka_config *config, const char *address) {
-    char *ip = nullptr;
-    char *port = nullptr;
+    char *ip = NULL;
+    char *port = NULL;
     int ret = sscanf(address, "%[^:]:%s", ip, port);
     memcpy(config->_ip, ip, strlen(ip));
     config->_port = ntohs(atoi(port));

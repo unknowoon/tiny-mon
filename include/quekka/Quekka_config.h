@@ -21,6 +21,6 @@ int Quekka_config_set_ip(Quekka_config *config, const char *ip);
 int Quekka_config_set_port(Quekka_config *config, const char *port);
 
 int Quekka_config_get_ip(const Quekka_config *config, char *ip);
-int Quekka_config_get_port(const Quekka_config *config, char *port);
+uint16_t Quekka_config_get_port(const Quekka_config *config);
 
 #endif //QUEKKA_QUEKKA_CONFIG_H

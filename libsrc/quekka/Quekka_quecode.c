@@ -2,7 +2,7 @@
 // Created by 우지범 on 2025. 12. 16..
 //
 
-#include "Quekka_quecode.h"
+#include "../../include/quekka/Quekka_quecode.h"
 
 static _Thread_local Quecode quecode = QUECODE_SUCCESS;
 

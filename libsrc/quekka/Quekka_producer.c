@@ -13,8 +13,8 @@
 #include <arpa/inet.h>
 #include "quekka/Quekka_config.h"
 #include "quekka/Quekka_log.h"
+#include "quekka/Quekka_quecode.h"
 
-#include "Quekka_quecode.h"
 
 static _Thread_local Quekka_producer *g_producer = NULL;
 /**

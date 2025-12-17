@@ -29,7 +29,7 @@ set(TEST_FILES
 
 # Quekka 구현 파일
 set(QUEKKA_SRC
-    ${PROJECT}/libsrc/quekka/Quekka_config.cpp
+    ${PROJECT}/libsrc/quekka/Quekka_config.c
         test_QuekkaProducer.cpp
 )
 

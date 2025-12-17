@@ -10,7 +10,9 @@
 #include <future>
 #include <thread>
 
+extern "C" {
 #include "quekka/Quekka_config.h"
+}
 
 // ------------------ 테스트 예시 ------------------
 
@@ -27,7 +29,6 @@ TEST(Quekka_config, usage) {
     Quekka_config_get_ip(&config, ip);
     EXPECT_STREQ(ip, "127.0.0.1");
 
-    char port[16];
-    Quekka_config_get_port(&config, port);
-    EXPECT_STREQ(port, "8080");
+    const uint16_t port = Quekka_config_get_port(&config);
+    EXPECT_EQ(port, htons(8080));
 }

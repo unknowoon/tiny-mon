@@ -12,7 +12,7 @@
 #define QUEKKA_TOPIC_MAX      (127 + 1)   // 토픽 최대 127자 + null
 #define QUEKKA_MSG_ID_MAX     (17 + 1)    // yyyymmddhhMMsssss + null
 #define QUEKKA_HEADER_SIZE    153         // 128 + 18 + 2 + 2 + 2 + 1
-#define QUEKKA_PAYLOAD_MAX    (QUEKKA_MSG_SIZE - QUEKKA_HEADER_SIZE)  // 3943
+#define QUEKKA_PAYLOAD_MAX    (QUEKKA_MSG_SIZE - QUEKKA_HEADER_SIZE)  // 3943 + 8176 * 1024
 #define QUEKKA_MSG_ID_FORMAT  "%Y%m%d%H%M%S"
 
 // 메시지 분할 플래그
