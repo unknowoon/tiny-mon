@@ -2,17 +2,20 @@
 #include "quekka/Quekka_log.h"
 #include "internal/comm.h"
 #include "internal/libsocket.h"
+#include <getopt.h>
 
 
 static int processArgs(int argc, char **argv);
 
-// static char *quekkaBindingIp = NULL;
-// static char *quekkaBindingPort = NULL;
+static char *quekkaBindingIp = NULL;
+static int quekkaBindingPort = 9999;
 
 
 int main (int argc, char *argv[]) {
 
-    processArgs(argc, argv);
+    if ( processArgs(argc, argv) == -1 ) {
+        exit(EXIT_FAILURE);
+    }
 
     logger_init("quekka.log", LOG_INFO);
 
@@ -20,13 +23,14 @@ int main (int argc, char *argv[]) {
     log_info("################# quekka ##################");
     log_info("##########################################");
 
-    int port = 9999;
+    int port = quekkaBindingPort;
 
     // 서버 소켓 생성 및 설정
     int server_fd = socket_init();
     if (server_fd < 0) {
         exit(1);
     }
+
     socket_setsockopt_reuseaddr(server_fd);
     socket_bind_address(port, server_fd);
     socket_listen(server_fd);
@@ -49,11 +53,21 @@ int main (int argc, char *argv[]) {
  * @return
  */
 int processArgs(int argc, char **argv) {
-    for (int i = 1; i < argc; i++) {
-        log_info("Processing argument: [%s]", argv[i]);
+    int opt;
+    while ((opt = getopt(argc, argv, "i:p:")) != -1) {
+        switch (opt) {
+            case 'i':
+                quekkaBindingIp = optarg;
+                log_info("IP address set to: %s", quekkaBindingIp);
+                break;
+            case 'p':
+                quekkaBindingPort = atoi(optarg);
+                log_info("Port set to: %d", quekkaBindingPort);
+                break;
+            default:
+                log_error("Usage: %s [-i ip-address] [-p port]", argv[0]);
+                return -1;
+        }
     }
-
-    //@todo getopt
-
     return 0;
 }
