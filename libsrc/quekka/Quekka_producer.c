@@ -17,7 +17,12 @@
 
 
 static _Thread_local Quekka_producer *g_producer = NULL;
+
+static void header_assemble(Quekka_header *header, const char *topic);
+static void message_assemble(Quekka_header *header, Quekka_message *message, const char *payload, uint16_t seq, uint8_t flag);
+
 /**
+ *
  *
  * @return
  */
@@ -53,6 +58,7 @@ Quekka_producer *Quekka_producer_init(const Quekka_config *config) {
     memcpy(g_producer, config, sizeof(Quekka_producer));
     g_producer->_fd = socket_fd;
     g_producer->Quekka_publish = Quekka_publish;
+    g_producer->_send_fn = send;  // 기본값: 시스템 send 함수
 
     return g_producer;
 }
@@ -64,7 +70,7 @@ Quekka_producer *Quekka_producer_init(const Quekka_config *config) {
  * @param size
  * @return
  */
-static int Quekka_publish(const char *topic, const char *payload, const size_t size) {
+int Quekka_publish(const char *topic, const char *payload, const size_t size) {
 
     const size_t payload_length = strlen(payload);
 

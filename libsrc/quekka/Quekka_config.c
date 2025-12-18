@@ -16,9 +16,9 @@ int Quekka_config_init(Quekka_config *config) {
 }
 
 int Quekka_config_set_address(Quekka_config *config, const char *address) {
-    char *ip = NULL;
-    char *port = NULL;
-    int ret = sscanf(address, "%[^:]:%s", ip, port);
+    char ip[64] = {0};
+    char port[16] = {0};
+    int ret = sscanf(address, "%63[^:]:%15s", ip, port);
     memcpy(config->_ip, ip, strlen(ip));
     config->_port = ntohs(atoi(port));
     if (ret != 2)

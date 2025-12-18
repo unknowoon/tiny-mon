@@ -29,14 +29,7 @@ set(TEST_FILES
     test_Epoll.cpp
 )
 
-# Quekka 구현 파일
-set(QUEKKA_SRC
-    ${PROJECT}/libsrc/quekka/Quekka_config.c
-    ${PROJECT}/libsrc/quekka/Quekka_producer.c
-    ${PROJECT}/libsrc/internal/libsocket.c
-)
-
-add_executable(src_unittest test_main.cpp ${TEST_FILES} ${QUEKKA_SRC})
+add_executable(src_unittest test_main.cpp ${TEST_FILES})
 
 target_include_directories(src_unittest PUBLIC
     ${PROJECT}/include
@@ -48,4 +41,7 @@ target_link_libraries(src_unittest
     gtest_main
     pthread
     quekka_common
+    quekka_config
+    quekka_error
+    quekka_pub
 )

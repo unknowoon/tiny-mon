@@ -55,23 +55,6 @@ Quekka_producer *Quekka_producer_init(const Quekka_config *config);
  * @param size
  * @return
  */
-static int Quekka_publish(const char *topic, const char *payload, size_t size);
-
-/**
- *
- * @param header
- * @param topic
- */
-static void header_assemble(Quekka_header *header, const char *topic);
-
-/**
- *
- * @param header
- * @param message
- * @param payload
- * @param seq
- * @param flag
- */
-static void message_assemble(Quekka_header *header, Quekka_message *message, const char *payload, uint16_t seq, uint8_t flag);
+int Quekka_publish(const char *topic, const char *payload, size_t size);
 
 #endif //QUEKKA_QUEKKA_PRODUCER_H
