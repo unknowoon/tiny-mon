@@ -132,15 +132,16 @@ endif()
 # =============================================================================
 if(UNIX AND NOT APPLE)
     add_executable(quekka
-        src/server/quekka.cpp
+            src/server/quekka.c
         libsrc/internal/libfile.c
         libsrc/internal/libsocket.c
-            include/internal/socket_server.h
-            include/internal/libsocket.h
-            libsrc/internal/libsocket.c
-            include/quekka/Quekka_quecode.h
-            libsrc/quekka/Quekka_quecode.c
-            libsrc/quekka/Quekka_config.c
+        include/internal/socket_server.h
+        include/internal/libsocket.h
+        include/internal/epoll_handler.h
+        libsrc/internal/libsocket.c
+        include/quekka/Quekka_quecode.h
+        libsrc/quekka/Quekka_quecode.c
+        libsrc/quekka/Quekka_config.c
     )
 
     target_link_libraries(quekka PRIVATE

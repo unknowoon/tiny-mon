@@ -1,19 +1,22 @@
-#include "quekka/Quekka_mdb.hpp"
 #include "quekka/Quekka_log.h"
 #include "internal/comm.h"
 #include "internal/libsocket.h"
+#include "internal/epoll_handler.h"
 #include <getopt.h>
-
-
-static int processArgs(int argc, char **argv);
+#include <sys/epoll.h>
 
 static char *quekkaBindingIp = NULL;
 static int quekkaBindingPort = 9999;
 
+static int gServerFd = -1;
+static epoll_handler_t *gHandler = NULL;
 
-int main (int argc, char *argv[]) {
+static int processArgs(int argc, char **argv);
 
-    if ( processArgs(argc, argv) == -1 ) {
+static void callback_fn(int fd, uint32_t events, void *user_data);
+
+int main(int argc, char *argv[]) {
+    if (processArgs(argc, argv) == -1) {
         exit(EXIT_FAILURE);
     }
 
@@ -28,22 +31,45 @@ int main (int argc, char *argv[]) {
     // 서버 소켓 생성 및 설정
     int server_fd = socket_init();
     if (server_fd < 0) {
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
+    // 서버 side로써, 우선 socket 생성.
     socket_setsockopt_reuseaddr(server_fd);
     socket_bind_address(port, server_fd);
     socket_listen(server_fd);
 
-    log_info("CommManager: Starting server on port %d", port);
-    socket_connect_with_client(server_fd);
+    gHandler = epoll_handler_create();
+    if (!gHandler) {
+        log_error("failed to epoll_handler_create");
+        exit(EXIT_FAILURE);
+    }
 
-    close(server_fd);
-    log_info("CommManager: Shutting down");
-    logger_close();
+    // connect 연결 요청 전용 fd를 등록함
+    epoll_handler_add(gHandler, server_fd, EPOLLIN);
+
+    gServerFd = server_fd;
+
+    epoll_event_callback_fn callback = callback_fn;
+
+    // @todo 이 함수가 잘못 된 것 같음. 이벤트가 들어오면 callback 함수가 실행되는데, callback 함수 정상 처리 후, 이후 처리는?
+    epoll_handler_wait(gHandler, -1, callback, NULL);
 
     return 0;
 }
+
+static void callback_fn(int fd, uint32_t events, void *user_data) {
+    log_info("FD [%d]에 이벤트가 발생 하였습니다. events[%d]", fd, events);
+
+    // 연결 요청이라면,
+    if (gServerFd == fd) {
+        int accepted_fd = tcp_socket_accept(gServerFd, NULL);
+
+        epoll_handler_add(gHandler, accepted_fd, EPOLLIN);
+    } else {
+        log_info("[%s]", user_data);
+    }
+};
 
 
 /**
