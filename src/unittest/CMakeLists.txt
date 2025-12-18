@@ -40,8 +40,8 @@ target_link_libraries(src_unittest
     gtest
     gtest_main
     pthread
-    quekka_common
-    quekka_config
-    quekka_error
     quekka_pub
+    quekka_config
+    quekka_common
+    quekka_error
 )

@@ -58,8 +58,6 @@ Quekka_producer *Quekka_producer_init(const Quekka_config *config) {
     memcpy(g_producer, config, sizeof(Quekka_producer));
     g_producer->_fd = socket_fd;
     g_producer->Quekka_publish = Quekka_publish;
-    g_producer->_send_fn = send;  // 기본값: 시스템 send 함수
-
     return g_producer;
 }
 

@@ -64,14 +64,14 @@ void socket_accept(const int socket_fd) {
 }
 
 void socket_set_server_address(struct sockaddr_in *server_address, const char *server_ip, const int server_port) {
-	memset(&server_address, 0, sizeof(server_address));
+	memset(server_address, 0, sizeof(struct sockaddr_in));
 	server_address->sin_family = AF_INET;
 	server_address->sin_port = htons(server_port);
 	inet_pton(AF_INET, server_ip, &server_address->sin_addr);
 }
 
 void socket_connect(struct sockaddr_in *server_address, const int socket_fd) {
-	if (connect(socket_fd, (struct sockaddr *)&server_address, sizeof(server_address) ) < 0) {
+	if (connect(socket_fd, (struct sockaddr *)server_address, sizeof(struct sockaddr_in)) < 0) {
 		log_error("connect failed: %s", strerror(errno));
 		close(socket_fd);
 		exit(1);
