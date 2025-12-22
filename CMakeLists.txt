@@ -132,7 +132,7 @@ endif()
 # =============================================================================
 if(UNIX AND NOT APPLE)
     add_executable(quekka
-            src/server/quekka.c
+            src/server/quekka.cpp
         libsrc/internal/libfile.c
         libsrc/internal/libsocket.c
         include/internal/socket_server.h
