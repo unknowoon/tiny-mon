@@ -3,6 +3,10 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define EPOLL_MAX_EVENTS 64
 
 // 불투명 포인터
@@ -29,5 +33,9 @@ int epoll_handler_wait(epoll_handler_t *handler, int timeout_ms,
 
 // epoll fd 얻기
 int epoll_handler_get_fd(epoll_handler_t *handler);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
