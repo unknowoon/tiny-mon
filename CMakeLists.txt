@@ -149,7 +149,7 @@ target_link_libraries(quekka_sub PUBLIC
 # Main Executable (quekka 서버)
 # =============================================================================
 add_executable(quekka-server
-    src/server/quekka.cpp
+    src/server/quekka.c
         include/quekka/Quekka_message.h
 )
 
